@@ -1,0 +1,25 @@
+.nav{
+    position:relative;
+    display: flex;
+    align-items: cen;
+    gap: 12px;
+    padding: 12 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+
+.nav:hover{
+    background-color: orangered;
+}
+
+.h2{
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500;
+}
+
+.icon{
+    font-size: 20px;
+}

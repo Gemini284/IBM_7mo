@@ -10,6 +10,21 @@
     padding: 5px 10px;
 }
 
+.navigation .menu{
+    position: absolute;
+    right: 10px;
+    top: 0;
+    margin-left: auto;
+    font-size: 18px;
+    height: 35px;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    cursor: pointer;
+}
+
 .navigation header{
     position: relative;
     display: flex;
@@ -46,6 +61,24 @@
     object-fit: cover;
 }
 
+
 .navigation header span{
     font-size: 15px;
+}
+
+.navigation .divider{
+    position: relative;
+    margin: 0 auto;
+    height: 1px;
+    width: 80%;
+    background-color: orangered;
+}
+
+.navigation .bg-waves{
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    opacity: 0.3;
 }
