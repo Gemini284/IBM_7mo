@@ -12,7 +12,6 @@ function App() {
     <AuthProvider>
       <div>
         <Dashboard />
-        <Main />
       </div>
     </AuthProvider>
   );

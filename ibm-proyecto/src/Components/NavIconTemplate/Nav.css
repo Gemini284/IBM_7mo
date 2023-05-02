@@ -1,7 +1,7 @@
 .nav{
     position:relative;
     display: flex;
-    align-items: cen;
+    align-items: center;
     gap: 12px;
     padding: 12 20px;
     border-radius: 10px;
@@ -14,10 +14,15 @@
     background-color: orangered;
 }
 
-.h2{
+h2{
+    align-items: center;
     font-size: 20px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: 500;
+}
+
+.navigation.active h2{
+    display: none;
 }
 
 .icon{

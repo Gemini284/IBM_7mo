@@ -6,11 +6,15 @@
     width: 20%;
     min-height: 100vh;
     color: white;
-    background: linear-gradient(10deg, #8a3ffc, #3D39F2);
+    background: #3D39F2;
     padding: 5px 10px;
+    overflow: hidden;
+}
+.navigation.active{
+    width: max-content;
 }
 
-.navigation .menu{
+.navigation.menu{
     position: absolute;
     right: 10px;
     top: 0;
@@ -23,6 +27,11 @@
     align-items: center;
     z-index: 1;
     cursor: pointer;
+}
+
+.navigation.active.menu{
+    position: relative;
+
 }
 
 .navigation header{
@@ -66,7 +75,7 @@
     font-size: 15px;
 }
 
-.navigation .divider{
+.navigation.divider{
     position: relative;
     margin: 0 auto;
     height: 1px;
@@ -74,11 +83,31 @@
     background-color: orangered;
 }
 
-.navigation .bg-waves{
+.navigation.bg-waves{
 
     position: absolute;
     left: 0;
     top: 0;
     z-index: -1;
     opacity: 0.3;
+}
+
+.navigation.menu.active{
+    rotate: 180deg;
+
+}
+
+.navigation.active header{
+    padding: 0;
+    margin-top: 10 px;
+    background-color: transparent;
+}
+
+.navigation.active head::after, .navigation.active header span{
+    display: none;
+
+}
+
+.navigation.active header .profile{
+    height: 40px;
 }
