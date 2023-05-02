@@ -5,9 +5,13 @@ import  Main from "./Main/Main"
 
 const Dashboard = () => {
   return (
-    <div className="grid grid-cols-2">
-        <Navigation />
-        <Main />    
+    <div className="flex flex-row">
+        <div className='basis-1/8'>
+          <Navigation />
+        </div>
+        <div className='basis-auto'>
+          <Main />    
+        </div>
     </div>
   )
 }

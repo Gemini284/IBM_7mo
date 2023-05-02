@@ -1,7 +1,8 @@
 import './Main.css'
 
 const Main = () => {
-  return <div>Main</div>
+  // className='main'
+  return <div >Main</div>
   
 };
 export default Main;
