@@ -45,9 +45,9 @@
 .content .row.header .txt-head {
     position: relative;
     color: rgba(255, 255, 255, 0.877);
-    font-size: 16px;
-    font-family: raleway;
-    font-weight: 400;
+    font-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 1000;
 }
 
 .content .row.header .divider{
@@ -55,4 +55,13 @@
     width: 35%;
     background-color: rgba(255, 255, 255, 0.514);
     margin: 10px 0;
+}
+
+.content .row.header .notifications{
+    display: flex;
+    padding: 10 px 16px;
+    background-color: rgba(255, 255, 255, 0.24);
+    border-radius: 50px;
+    gap: 15px;
+    color: white;
 }

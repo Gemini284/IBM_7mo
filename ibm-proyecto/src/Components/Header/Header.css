@@ -3,6 +3,7 @@ header{
     display: flex;
     align-items: center;
     padding: 8px;
+    justify-content: space-between;
     --color:color:#0a6672;
 }
 
@@ -53,12 +54,6 @@ header .tools .icon:hover{
     color: var(--color); 
 }
 
-header .tools .divider{
-    background-color: var(--color);
-    width: 1px;
-    border-radius: 100px;
-    align-self: stretch;
-}
 
 header .tools .user{
     position: relative;

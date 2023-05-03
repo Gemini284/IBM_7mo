@@ -11,16 +11,10 @@ const Content = () => {
     <div className={`content ${DarkTheme && "dark"}`}>
       <div className="row header">
         <FiSettings className="cog" />
-        <h1 className="txt">Current Notifications</h1>
-
+        <h1 className="txt-head">Current Notifications</h1>
         <div className='divider'></div>
-
         <div className="notifications">
-            <RiChat1Line />
-            <RiChat1Line />
-            <RiChat1Line />
-            <RiChat1Line />
-            
+          <RiChat1Line /><RiChat1Line /><RiChat1Line /><RiChat1Line /><RiChat1Line />
         </div>
 
       </div>
