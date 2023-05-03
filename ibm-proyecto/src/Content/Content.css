@@ -65,3 +65,33 @@
     gap: 15px;
     color: white;
 }
+
+.content .section-title{
+    color: rgba(255, 255, 255, 0.24);
+    font-size: 14px;
+    grid-column: span 4;
+    margin-left: 5;
+}
+
+.content .row.square{
+    aspect-ratio: 1;
+    --clr-i: #00464e;
+    --clr-ii: #810551;
+
+
+}
+
+.content .row.square::after{
+    position: absolute;
+    content: "";
+    height: calc(100% - 4px);
+    aspect-ratio: 1;
+    border-radius: 8px;
+    background-color: #e4e4e4;
+
+}
+
+.content.dark .row.square::after{
+    background-color: #111;
+    color: white;
+}
