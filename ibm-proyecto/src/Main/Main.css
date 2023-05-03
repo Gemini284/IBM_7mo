@@ -2,7 +2,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 3220%;
+    align-self: flex-start;
     flex: 1;
     background-color: white;
     min-height: 100vh;

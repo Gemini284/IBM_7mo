@@ -34,7 +34,7 @@ const Navigation = () => {
         </header>
         <Nav title="Dashboard" Icon={AiOutlineHome}/>
         <Nav title="Busqueda" Icon={CiSearch}/>
-        <Nav title={`${DarkTheme ? "Swirch to light mode" : " Switch to dark mode"}`} Icon={WiSolarEclipse} onClick={changeTheme}/>
+        <Nav title={`${DarkTheme ? "Switch to light mode" : " Switch to dark mode"}`} Icon={WiSolarEclipse} onClick={changeTheme}/>
         <div className="divider"></div>
         
               

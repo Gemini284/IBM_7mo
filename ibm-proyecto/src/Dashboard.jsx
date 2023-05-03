@@ -12,7 +12,7 @@ const Dashboard = () => {
         <div className='basis-1/8'>
           <Navigation />
         </div>
-        <div className='basis-auto'>
+        <div>
           <Main />    
         </div>
       </div>
