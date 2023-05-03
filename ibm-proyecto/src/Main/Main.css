@@ -2,7 +2,13 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    width: 3220%;
     flex: 1;
-    background-color: black;
+    background-color: white;
     min-height: 100vh;
+}
+
+.main.dark{
+    background-color: black;
+    color: white;
 }

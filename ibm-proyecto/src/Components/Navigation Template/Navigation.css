@@ -111,3 +111,7 @@
 .navigation.active header .profile{
     height: 40px;
 }
+
+.navigation.dark header{
+    background-color: rgba(0, 0, 0, 0.786);
+}

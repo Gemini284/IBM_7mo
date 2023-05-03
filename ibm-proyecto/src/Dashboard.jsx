@@ -1,18 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import dashboard from './Dashboard.css'
 import Navigation from './Components/Navigation Template/Navigation'
 import  Main from "./Main/Main"
+import { ThemeContext } from './ThemeContext'
 
 const Dashboard = () => {
+  const [DarkTheme, setDarkTheme] = useState(true);
   return (
-    <div className="flex flex-row">
+    <ThemeContext.Provider value ={{DarkTheme,setDarkTheme}}>
+      <div className="flex flex-row">
         <div className='basis-1/8'>
           <Navigation />
         </div>
         <div className='basis-auto'>
           <Main />    
         </div>
-    </div>
+      </div>
+    </ThemeContext.Provider>
+    
+
   )
 }
 
