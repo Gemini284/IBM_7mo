@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const createJWT = require('../utils/auth-util');
 
-const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+const emailRegexp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 exports.signin = (req, res) => {
     let {email, password} = req.body;
@@ -29,6 +29,7 @@ exports.signin = (req, res) => {
             }
             else {
                 bcrypt.compare(password, user.password).then(isMatch => {
+                    //console.log(`${password} + ${user.password} + ${isMatch}`);
                     if(!isMatch){
                         return res.status(400).json({errors: [{password: "incorrect"}]});
                     }

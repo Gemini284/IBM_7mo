@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require("express");
 const mongoose = require('mongoose');
-const bodyParser = require("body-parser");
 const cors = require("cors");
 
 //routes
@@ -14,13 +13,12 @@ const app = express();
 
 //middlewares
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use('/api', authRoutes);
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 // start the Express server and database
 mongoose.set('strictQuery', false);
-mongoose.connect(`mongodb://127.0.0.1:${PORT}/`, {
+mongoose.connect(process.env.DATABASE, {
   useNewUrlParser: true,
   useUnifiedTopology: true
   })
@@ -32,3 +30,5 @@ mongoose.connect(`mongodb://127.0.0.1:${PORT}/`, {
   .catch((error) => {
     console.log(error);
   })
+
+app.use('/api', authRoutes);

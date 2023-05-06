@@ -8,6 +8,5 @@ La extensi√≥n de las paginas es .jsx pueden usar javascript ahi, pero me permit√
 ## Server
 Para instalar dependencias:
 ```
-npm install express jsonwebtoken bcrypt body-parser 
-cors mongoose dotenv
+npm install express jsonwebtoken bcrypt cors mongoose dotenv nodemon
 ```
