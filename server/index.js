@@ -1,26 +1,27 @@
-import express from "express";
-import cors from "cors";
-import "./loadEnvironment.mjs";
-import records from "./routes/record.mjs";
-
+require('dotenv').config();
+const express = require("express");
 const mongoose = require('mongoose');
-const PORT = process.env.PORT || 4000;
+const bodyParser = require("body-parser");
+const cors = require("cors");
+
+const PORT = process.env.PORT || 5050;
 const app = express();
 
 app.use(cors());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json());
 
-app.use("/record", records);
-
-// start the Express server
-app.listen(PORT, () => {
-  console.log(`Server is running on port: ${PORT}`);
-});
-
-// To connect with your mongoDB database
-mongoose.connect(`mongodb://localhost:${PORT}`, {
-    dbName: 'ibm_db',
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}, err => err ? console.log(err) :
-    console.log('Connected to your database'));
+// start the Express server and database
+mongoose.set('strictQuery', false);
+mongoose.connect(`mongodb://127.0.0.1:${PORT}/`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+  })
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server is running on port: ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  })
