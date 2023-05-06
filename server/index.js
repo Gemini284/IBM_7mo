@@ -4,12 +4,19 @@ const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+//routes
+const authRoutes = require('./routes/auth-router');
+const db = require('./models/user-model');
+
+//app
 const PORT = process.env.PORT || 5050;
 const app = express();
 
+//middlewares
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use('/api', authRoutes);
 
 // start the Express server and database
 mongoose.set('strictQuery', false);
