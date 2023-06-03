@@ -1,4 +1,3 @@
-// @mui material components
 import { styled } from "@mui/material/styles";
 
 export default styled("span")(({ theme }) => {

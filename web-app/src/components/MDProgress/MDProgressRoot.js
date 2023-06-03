@@ -1,4 +1,3 @@
-// @mui material components
 import { styled } from "@mui/material/styles";
 import LinearProgress from "@mui/material/LinearProgress";
 

@@ -1,4 +1,3 @@
-// @mui material components
 import Icon from "@mui/material/Icon";
 import { styled } from "@mui/material/styles";
 
