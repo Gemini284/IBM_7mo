@@ -1,4 +1,4 @@
-const User = require('../models/user-model');
+const Admin = require('../models/admin-model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const createJWT = require('../utils/auth-util');
@@ -22,7 +22,7 @@ exports.signin = (req, res) => {
         return res.status(422).json({errors: errors});
     }
 
-    User.findOne({email: email})
+    Admin.findOne({email: email})
         .then(user => {
             if(!user) {
                 return res.status(404).json({errors: [{user: "not found"}]});

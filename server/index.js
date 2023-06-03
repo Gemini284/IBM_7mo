@@ -5,7 +5,7 @@ const cors = require("cors");
 
 //routes
 const authRoutes = require('./routes/auth-router');
-const db = require('./models/user-model');
+const db = require('./models/admin-model');
 
 //app
 const PORT = process.env.PORT || 5050;
