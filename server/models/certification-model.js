@@ -22,4 +22,4 @@ const certificationSchema = new mongoose.Schema({
     }
 );
 
-module.exports = mongoose.model('Certification', certificationSchema);
+module.exports = mongoose.model('Certification', certificationSchema, 'certifications');

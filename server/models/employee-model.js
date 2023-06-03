@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Certification = require('./certification-model');
 
 const employeeSchema = new mongoose.Schema({
     uid: {
@@ -15,8 +16,7 @@ const employeeSchema = new mongoose.Schema({
         required: true
     },
     employee_certifications: {
-        type: Array,
-        required: true
+        type: [Certification.schema]
     }
 }, {
     timestamps: true,
@@ -24,4 +24,4 @@ const employeeSchema = new mongoose.Schema({
     }
 );
 
-module.exports = mongoose.model('Employee', employeeSchema);
+module.exports = mongoose.model('Employee', employeeSchema, 'employees');
