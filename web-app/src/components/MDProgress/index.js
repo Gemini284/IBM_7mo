@@ -18,39 +18,41 @@ import { forwardRef } from "react";
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
 
-// Custom styles for MDBox
-import MDBoxRoot from "components/MDBox/MDBoxRoot";
+// Material Dashboard 2 React components
+import MDTypography from "components/MDTypography";
 
-const MDBox = forwardRef(
-  ({ variant, bgColor, color, opacity, borderRadius, shadow, coloredShadow, ...rest }, ref) => (
-    <MDBoxRoot
+// Custom styles for MDProgress
+import MDProgressRoot from "components/MDProgress/MDProgressRoot";
+
+const MDProgress = forwardRef(({ variant, color, value, label, ...rest }, ref) => (
+  <>
+    {label && (
+      <MDTypography variant="button" fontWeight="medium" color="text">
+        {value}%
+      </MDTypography>
+    )}
+    <MDProgressRoot
       {...rest}
       ref={ref}
-      ownerState={{ variant, bgColor, color, opacity, borderRadius, shadow, coloredShadow }}
+      variant="determinate"
+      value={value}
+      ownerState={{ color, value, variant }}
     />
-  )
-);
+  </>
+));
 
-// Setting default values for the props of MDBox
-MDBox.defaultProps = {
+// Setting default values for the props of MDProgress
+MDProgress.defaultProps = {
   variant: "contained",
-  bgColor: "transparent",
-  color: "dark",
-  opacity: 1,
-  borderRadius: "none",
-  shadow: "none",
-  coloredShadow: "none",
+  color: "info",
+  value: 0,
+  label: false,
 };
 
-// Typechecking props for the MDBox
-MDBox.propTypes = {
+// Typechecking props for the MDProgress
+MDProgress.propTypes = {
   variant: PropTypes.oneOf(["contained", "gradient"]),
-  bgColor: PropTypes.string,
-  color: PropTypes.string,
-  opacity: PropTypes.number,
-  borderRadius: PropTypes.string,
-  shadow: PropTypes.string,
-  coloredShadow: PropTypes.oneOf([
+  color: PropTypes.oneOf([
     "primary",
     "secondary",
     "info",
@@ -59,8 +61,9 @@ MDBox.propTypes = {
     "error",
     "light",
     "dark",
-    "none",
   ]),
+  value: PropTypes.number,
+  label: PropTypes.bool,
 };
 
-export default MDBox;
+export default MDProgress;
