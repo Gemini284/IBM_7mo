@@ -33,7 +33,7 @@ import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 
 // Dashboard components
 import Projects from "layouts/dashboard/components/Projects";
-import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
+//import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
@@ -150,7 +150,7 @@ function Dashboard() {
               <Projects />
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
-              <OrdersOverview />
+
             </Grid>
           </Grid>
         </MDBox>
