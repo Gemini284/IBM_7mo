@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const certificationSchema = new mongoose.Schema({
     uid: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        lenght: 9
     },
     name: {
         type: String,
