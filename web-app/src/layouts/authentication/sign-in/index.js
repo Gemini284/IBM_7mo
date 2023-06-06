@@ -46,6 +46,62 @@ function Basic() {
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
+  // api call
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+    showPassword: false,
+  })
+
+  const [errors, setErrors] = useState({
+    email: false,
+    password: false,
+    fetchError: false,
+    fetchErrorMsg: "",
+  })
+
+  const handleChange = (fieldName) => (event) => {
+    setValues({...values, [fieldName]: event.target.value})
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+
+    try {
+      const res = await fetch('/api/user/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password,
+        }),
+      })
+
+      if(!res.ok) {
+        const error = await res.json()
+        return setErrors({
+          ...errors,
+          fetchError: true,
+          fetchErrorMsg: error.msg,
+        })
+      }
+
+      const data = await res.json()
+      console.log({data})
+
+      setValues({
+        email: "",
+        password: "",
+        showPassword: false,
+      })
+      return
+    } catch (error) {
+      return console.log(error.message)
+    }
+  }
+
   return (
     <BasicLayout image={bgImage}>
       <Card>
@@ -82,12 +138,12 @@ function Basic() {
           </Grid>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
-          <MDBox component="form" role="form">
+          <MDBox component="form" role="form" onSubmit={handleSubmit}>
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" fullWidth />
+              <MDInput type="email" label="Email" value={values.email} onChange={handleChange('email')} fullWidth />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" fullWidth />
+              <MDInput type="password" label="Password" value={values.password} onChange={handleChange('password')} fullWidth />
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -102,7 +158,7 @@ function Basic() {
               </MDTypography>
             </MDBox>
             <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="info" fullWidth>
+              <MDButton variant="gradient" color="info" type="submit" disabled={errors.email || errors.password} fullWidth>
                 sign in
               </MDButton>
             </MDBox>

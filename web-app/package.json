@@ -9,8 +9,10 @@
     "@emotion/styled": "^11.10.8",
     "@mui/icons-material": "5.11.16",
     "@mui/material": "^5.12.3",
+    "axios": "^1.4.0",
     "chart.js": "4.3.0",
     "chroma-js": "2.4.2",
+    "dotenv": "^16.1.4",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-chartjs-2": "5.2.0",
@@ -60,5 +62,6 @@
   },
   "overrides": {
     "svgo": "3.0.2"
-  }
+  },
+  "proxy": "http://localhost:8000"
 }

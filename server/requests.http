@@ -1,0 +1,8 @@
+### Creacion de admin
+POST http://localhost:8000/api/user/signin HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "prueba@gmail.com",
+  "password": "prueba"
+}
