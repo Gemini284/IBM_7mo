@@ -26,18 +26,18 @@ mongoose.connect(uri, {
   useUnifiedTopology: true,
   dbName: db,
 })
-.then(() => {
-  console.log("Database is connected");
-})
-.catch((error) => {
-  console.log(error);
-})
+  .then(() => {
+    console.log("Database is connected");
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
 });
 
 // route middlewares
-app.use('/user', authRoutes);
-app.use('/employee', employeeRoutes);
-app.use('/certification', certificationRoutes);
+app.use('/api/user', authRoutes);
+app.use('/api/employee', employeeRoutes);
+app.use('/api/certification', certificationRoutes);

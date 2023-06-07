@@ -12,8 +12,43 @@ const loginSchema = Joi.object({
     password: Joi.string().required(),
 })
 
+const registerSchema = Joi.object({
+    email: Joi.string().required().email(),
+    password: Joi.string().required(),
+})
+
+router.post("/register", async (req, res) => {
+    const { error } = registerSchema.validate(req.body);
+    if (error){
+        return res.status(400).send(error.details[0].message);
+    }
+  
+    const emailExists = await Admin.findOne({ email: req.body.email });
+  
+    if (emailExists){
+        return res.status(400).send("Email allready exists");
+    }
+  
+    //password hashing
+    const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(req.body.password, salt);
+  
+    //create new user
+    const user = new Admin({
+      name: req.body.name,
+      email: req.body.email,
+      password: hashPassword,
+    });
+  
+    try {
+      const savedUser = await user.save();
+      res.send(savedUser);
+    } catch (err) {
+      res.status(400).send(err);
+    }
+});
+
 router.post('/signin', async(req, res) => {
-    //create login route
     const {error} = loginSchema.validate(req.body);
     if (error) {
         return res.status(400).send(error.details[0].message);

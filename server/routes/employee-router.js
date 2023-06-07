@@ -73,4 +73,16 @@ router.get("/:location", async (req, res) => {
     }
 })
 
+// get by certification
+router.get("/:certification", async (req, res) => {
+    let query = {employee_certifications: req.params.certification};
+    try{
+        let result = await Employee.find(query);
+        res.status(200).json(result);
+    }
+    catch{
+        res.status(500).json({message: error.message});
+    }
+})
+
 module.exports = router;
