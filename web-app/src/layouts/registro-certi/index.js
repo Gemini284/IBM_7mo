@@ -3,15 +3,15 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { InputAdornment } from '@mui/material';
+
 
 function Copyright(props) {
   return (
@@ -55,14 +55,16 @@ export default function SignIn() {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h8">
             Registra una certificación
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <Typography component="h2" variant="h6">
                 Id del empleado
             </Typography>
-            <TextField
+            <TextField InputProps={{startAdornment: <InputAdornment position="start">
+              <PersonOutlineIcon />
+              </InputAdornment>}}
               margin="normal"
               required
               fullWidth
@@ -75,7 +77,9 @@ export default function SignIn() {
             <Typography component="h2" variant="h6">
                 Nombre de la certificación
             </Typography>
-            <TextField
+            <TextField InputProps={{startAdornment: <InputAdornment position="start">
+              <PersonOutlineIcon />
+              </InputAdornment>}}
               margin="normal"
               required
               fullWidth
@@ -83,6 +87,37 @@ export default function SignIn() {
               label="Nombre de la Certificación"
               type="certificado"
               id="certificado"
+            />
+            <Typography component="h2" variant="h6">
+                Descripción
+            </Typography>
+            <TextField InputProps={{startAdornment: <InputAdornment position="start">
+              <PersonOutlineIcon />
+              </InputAdornment>}}
+              margin="normal"
+              required
+              fullWidth
+              id="descripcion"
+              label="Descripción"
+              name="descripcion"
+              autoComplete="descripcion"
+              autoFocus
+            />
+
+            <Typography component="h2" variant="h6">
+                Organización
+            </Typography>
+            <TextField InputProps={{startAdornment: <InputAdornment position="start">
+              <PersonOutlineIcon />
+              </InputAdornment>}}
+              margin="normal"
+              required
+              fullWidth
+              id="descripcion"
+              label="Ingrese la organización que lo certifica"
+              name="descripcion"
+              autoComplete="descripcion"
+              autoFocus
             />
 
             <Button
