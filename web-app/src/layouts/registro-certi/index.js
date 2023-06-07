@@ -12,7 +12,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { InputAdornment } from '@mui/material';
 import { DateTimePicker } from '@mui/x-date-pickers';
-
+import BasicDateTimePicker from './BasicDateTimePicker';
 
 const onChange = (date, dateString) => {
   console.log(date, dateString);
@@ -111,7 +111,7 @@ export default function SignIn() {
             <Typography component="h2" variant="h6">
                 Fecha de certificación
             </Typography>
-            <DateTimePicker />
+            <BasicDateTimePicker />
 
             <Typography component="h2" variant="h6">
                 Organización
