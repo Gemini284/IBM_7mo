@@ -11,7 +11,12 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { InputAdornment } from '@mui/material';
+import { DateTimePicker } from '@mui/x-date-pickers';
 
+
+const onChange = (date, dateString) => {
+  console.log(date, dateString);
+};
 
 function Copyright(props) {
   return (
@@ -103,6 +108,10 @@ export default function SignIn() {
               autoComplete="descripcion"
               autoFocus
             />
+            <Typography component="h2" variant="h6">
+                Fecha de certificación
+            </Typography>
+            <DateTimePicker />
 
             <Typography component="h2" variant="h6">
                 Organización
