@@ -43,6 +43,8 @@ import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import Registro from "layouts/registro-certi";
+import Registro from "layouts/registro";
+import Project from "layouts/dashboard/components/Projects"
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -59,20 +61,13 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Tables",
-    key: "tables",
-    icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/tables",
-    component: <Tables />,
+    name: "Buscar",
+    key: "project",
+    icon: <Icon fontSize="small">Project</Icon>,
+    route: "layouts/dashboard/components/Projects",
+    component: <Project />,
   },
-  {
-    type: "collapse",
-    name: "Profile",
-    key: "profile",
-    icon: <Icon fontSize="small">person</Icon>,
-    route: "/profile",
-    component: <Profile />,
-  },
+
   {
     type: "collapse",
     name: "Registro",
@@ -81,6 +76,7 @@ const routes = [
     route: "/registro",
     component: <Registro />,
   },
+
   {
     type: "collapse",
     name: "Sign In",
@@ -89,14 +85,7 @@ const routes = [
     route: "/authentication/sign-in",
     component: <SignIn />,
   },
-  {
-    type: "collapse",
-    name: "Sign Up",
-    key: "sign-up",
-    icon: <Icon fontSize="small">assignment</Icon>,
-    route: "/authentication/sign-up",
-    component: <SignUp />,
-  },
+
 ];
 
 export default routes;
