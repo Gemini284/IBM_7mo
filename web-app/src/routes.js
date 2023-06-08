@@ -43,10 +43,12 @@ import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import Registro from "layouts/registro-certi";
+import Search1 from "layouts/search"
+import { Space, Table, Tag } from 'antd';
 
 // @mui icons
 import Icon from "@mui/material/Icon";
-import { AppRegistrationOutlined } from "@mui/icons-material";
+import { AppRegistrationOutlined, Search } from "@mui/icons-material";
 
 const routes = [
   {
@@ -67,17 +69,17 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Profile",
-    key: "profile",
-    icon: <Icon fontSize="small">person</Icon>,
-    route: "/profile",
-    component: <Profile />,
+    name: "Search",
+    key: "search",
+    icon: <Icon fontSize="small">search</Icon>,
+    route: "/search",
+    component: <Search1 />,
   },
   {
     type: "collapse",
     name: "Registro",
     key: "registro",
-    icon: <Icon fontSize="small">registro</Icon>,
+    icon: <Icon fontSize="small">person</Icon>,
     route: "/registro",
     component: <Registro />,
   },
