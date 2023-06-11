@@ -30,7 +30,7 @@ function FormInput(props){
         <Grid item xs>
         <TextField
             InputProps={
-                {startAdornment: <InputAdornment position="start">
+                {startAdornment: <InputAdornment position="end">
                 {getIconFromName(props.icon)}
                 </InputAdornment>}}
             margin="normal"
@@ -40,6 +40,7 @@ function FormInput(props){
             name={props.name}
             autoFocus
             fullWidth
+            {... props}
             />
         </Grid>
     );

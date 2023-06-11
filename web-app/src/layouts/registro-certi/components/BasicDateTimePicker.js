@@ -22,17 +22,16 @@ function BasicDateTimePicker() {
 
         renderInput={(params) => <TextField
           {...params}
-          InputProps={{startAdornment: <InputAdornment position="start">
+          InputProps={{startAdornment: <InputAdornment position="end">
             <CalendarTodayIcon />
             </InputAdornment>}}
-          margin="normal"
           required
           id="fecha"
           label="Selecciona una fecha (yyyy/MM/dd)"
           name="fecha"
-          autoComplete="fecha"
           autoFocus
           fullWidth
+          margin="normal"
           />}
       /> 
     </LocalizationProvider>

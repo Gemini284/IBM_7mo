@@ -36,38 +36,42 @@ export default function RegistroCertificate() {
         </Grid>
       </MDBox>
       <MDBox py={3}>
-        <Grid container spacing={3} direction="row" justifyContent="center" alignItems="center">
-          <FormInput 
-            id="empleado"
-            label="Id de empleado"
-            name="empleado"
-            icon="person"/>
-          <FormInput 
-            name="certificacion"
-            label="Nombre de la Certificación"
-            id="certificado"
-            icon="certification"/>
-        </Grid>
-        <Grid container spacing={3} direction="row" justifyContent="center" alignItems="center">
-          <FormInput 
-            id="description"
-            label="Descripción"
-            name="description"
-            icon="description"/>
+        <Grid container spacing={3} justifyContent="space-around" alignItems="flex-start">
+          <Grid container item spacing={3} direction="row">
+            <FormInput 
+              id="empleado"
+              label="Id de empleado"
+              name="empleado"
+              icon="person"/>
+            <FormInput 
+              name="certificacion"
+              label="Nombre de la Certificación"
+              id="certificado"
+              icon="certification"/>
           </Grid>
-        <Grid container spacing={3} direction="row" justifyContent="center" alignItems="center">
-          <BasicDateTimePicker />
-          <FormInput
-            id="organization"
-            label="Ingrese la organización que lo certifica"
-            name="organization"
-            icon="company"/>
-        </Grid>
-        <Grid container spacing={3} direction="row" justifyContent="center" alignItems="center">
-          <Grid item xs>
-            <MDButton type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
-              Registrar
-            </MDButton>
+          <Grid container item spacing={3} direction="row">
+            <FormInput 
+              id="description"
+              label="Descripción"
+              name="description"
+              icon="description"
+              multiline
+              minRows={5}/>
+          </Grid>
+          <Grid container item spacing={3} direction="row">
+            <BasicDateTimePicker />
+            <FormInput
+              id="organization"
+              label="Ingrese la organización que lo certifica"
+              name="organization"
+              icon="company"/>
+          </Grid>
+          <Grid container item spacing={3} direction="row">
+            <Grid item xs>
+              <MDButton type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
+                Registrar
+              </MDButton>
+            </Grid>
           </Grid>
         </Grid>
       </MDBox>
