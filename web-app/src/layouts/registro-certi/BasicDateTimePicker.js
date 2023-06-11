@@ -30,7 +30,7 @@ function BasicDateTimePicker() {
           required
           fullWidth
           id="fecha"
-          label="Selecciona una fecha"
+          label="Selecciona una fecha (yyyy/MM/dd)"
           name="fecha"
           autoComplete="fecha"
           autoFocus

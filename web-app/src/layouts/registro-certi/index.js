@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { InputAdornment } from '@mui/material';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import BasicDateTimePicker from './BasicDateTimePicker';
+import { Select } from '@mui/material';
 
 const onChange = (date, dateString) => {
   console.log(date, dateString);
@@ -64,27 +65,31 @@ export default function SignIn() {
             Registra una certificación
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <Typography component="h2" variant="h6">
-                Id del empleado
+            <Typography component="h2" variant="h6">
+              Id del empleado
             </Typography>
-            <TextField InputProps={{startAdornment: <InputAdornment position="start">
-              <PersonOutlineIcon />
-              </InputAdornment>}}
+            <TextField InputProps={{
+              startAdornment: <InputAdornment position="start">
+                <PersonOutlineIcon />
+              </InputAdornment>
+            }}
               margin="normal"
               required
               fullWidth
               id="empleado"
-              label="Id de empleado"
+              label="Id de empleado (UID)"
               name="empleado"
               autoComplete="empleado"
               autoFocus
             />
             <Typography component="h2" variant="h6">
-                Nombre de la certificación
+              Nombre de la certificación
             </Typography>
-            <TextField InputProps={{startAdornment: <InputAdornment position="start">
-              <PersonOutlineIcon />
-              </InputAdornment>}}
+            <TextField InputProps={{
+              startAdornment: <InputAdornment position="start">
+                <PersonOutlineIcon />
+              </InputAdornment>
+            }}
               margin="normal"
               required
               fullWidth
@@ -93,37 +98,48 @@ export default function SignIn() {
               type="certificado"
               id="certificado"
             />
+            
             <Typography component="h2" variant="h6">
-                Descripción
-            </Typography>
-            <TextField InputProps={{startAdornment: <InputAdornment position="start">
-              <PersonOutlineIcon />
-              </InputAdornment>}}
-              margin="normal"
-              required
-              fullWidth
-              id="descripcion"
-              label="Descripción"
-              name="descripcion"
-              autoComplete="descripcion"
-              autoFocus
-            />
-            <Typography component="h2" variant="h6">
-                Fecha de certificación
+              Fecha de certificación
             </Typography>
             <BasicDateTimePicker />
 
             <Typography component="h2" variant="h6">
-                Organización
+              Tipo de certificación
             </Typography>
-            <TextField InputProps={{startAdornment: <InputAdornment position="start">
-              <PersonOutlineIcon />
-              </InputAdornment>}}
+            
+
+            <Typography component="h2" variant="h6">
+              Ubicación de trabajo
+            </Typography>
+            <TextField InputProps={{
+              startAdornment: <InputAdornment position="start">
+                <PersonOutlineIcon />
+              </InputAdornment>
+            }}
+              margin="normal"
+              required
+              fullWidth
+              id="ubicacion"
+              label="Ubicación de trabajo"
+              name="ubicacion"
+              autoComplete="ubicacion"
+              autoFocus
+            />
+
+            <Typography component="h2" variant="h6">
+              Organización
+            </Typography>
+            <TextField InputProps={{
+              startAdornment: <InputAdornment position="start">
+                <PersonOutlineIcon />
+              </InputAdornment>
+            }}
               margin="normal"
               required
               fullWidth
               id="descripcion"
-              label="Ingrese la organización que lo certifica"
+              label="Ingrese la organización a la cual pertenece"
               name="descripcion"
               autoComplete="descripcion"
               autoFocus

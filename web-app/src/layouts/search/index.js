@@ -37,6 +37,12 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 const columns = [
   {
+    title: 'UID',
+    dataIndex: 'uid',
+    key: 'uid',
+    render: (text) => <a>{text}</a>,
+  },
+  {
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
