@@ -9,14 +9,13 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import BasicDateTimePicker from './components/BasicDateTimePicker';
-import FormInput from './components/FormInput';
 import { MarginRounded } from '@mui/icons-material';
 import { Grid } from '@mui/material';
 import MDBox from 'components/MDBox';
 import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
 import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
 import MDButton from 'components/MDButton';
-
+import FormInput from '../../components/FormInput';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -24,7 +23,8 @@ export default function RegistroCertificate() {
 
   return (
     <DashboardLayout>
-      <MDBox py={3}>
+      <DashboardNavbar />
+      <MDBox py={1}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
             <MDBox mb={1.5}>
@@ -35,7 +35,7 @@ export default function RegistroCertificate() {
           </Grid>
         </Grid>
       </MDBox>
-      <MDBox py={3}>
+      <MDBox py={1}>
         <Grid container spacing={3} justifyContent="space-around" alignItems="flex-start">
           <Grid container item spacing={3} direction="row">
             <FormInput 

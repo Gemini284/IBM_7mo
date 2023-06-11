@@ -43,13 +43,12 @@ import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import Registro from "layouts/registro-certi";
-import Search1 from "layouts/search"
-import Search2 from "layouts/search_2"
 import { Space, Table, Tag } from 'antd';
+import Search from "layouts/search";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
-import { AppRegistrationOutlined, Search } from "@mui/icons-material";
+import { AppRegistrationOutlined} from "@mui/icons-material";
 
 const routes = [
   {
@@ -62,25 +61,17 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Buscar Personas",
+    name: "Búsqueda",
     key: "search",
-    icon: <Icon fontSize="small">person</Icon>,
-    route: "/search",
-    component: <Search1 />,
-  },
-  {
-    type: "collapse",
-    name: "Buscar Certificacion",
-    key: "search_2",
     icon: <Icon fontSize="small">search</Icon>,
-    route: "/search_2",
-    component: <Search2 />,
+    route: "/search",
+    component: <Search/>,
   },
   {
     type: "collapse",
     name: "Registro",
     key: "registro",
-    icon: <Icon fontSize="small">person</Icon>,
+    icon: <Icon fontSize="small">edit</Icon>,
     route: "/registro",
     component: <Registro />,
   },
@@ -91,14 +82,6 @@ const routes = [
     icon: <Icon fontSize="small">login</Icon>,
     route: "/authentication/sign-in",
     component: <SignIn />,
-  },
-  {
-    type: "collapse",
-    name: "Sign Up",
-    key: "sign-up",
-    icon: <Icon fontSize="small">assignment</Icon>,
-    route: "/authentication/sign-up",
-    component: <SignUp />,
   },
 ];
 

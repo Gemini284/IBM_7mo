@@ -13,29 +13,22 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { InputAdornment } from '@mui/material';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import { Space, Table, Tag } from 'antd';
+import { Dashboard } from '@mui/icons-material';
+import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
 
 
 const onChange = (date, dateString) => {
   console.log(date, dateString);
 };
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
-
-const defaultTheme = createTheme();
 const columns = [
+  {
+    title: 'UID',
+    dataIndex: 'uid',
+    key: 'uid',
+    render: (text) => <a>{text}</a>,
+  },
   {
     title: 'Name',
     dataIndex: 'name',
@@ -108,7 +101,7 @@ const data = [
 ];
 const SearchComponent = () => <Table columns={columns} dataSource={data} />;
 
-export default function SignIn() {
+export default function PersonSearch() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -119,7 +112,8 @@ export default function SignIn() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <DashboardLayout>
+      <DashboardNavbar/>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -130,9 +124,6 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
           <Typography component="h1" variant="h8">
             Resultado de Busqueda
           </Typography>
@@ -161,6 +152,6 @@ export default function SignIn() {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
+    </DashboardLayout>
   );
 }

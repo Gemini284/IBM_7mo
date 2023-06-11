@@ -6,6 +6,7 @@ import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
 import CorporateFareOutlinedIcon from '@mui/icons-material/CorporateFareOutlined';
 import MDBox from 'components/MDBox';
 import { Grid } from '@mui/material';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 function FormInput(props){
 
@@ -19,6 +20,8 @@ function FormInput(props){
                 return <EditNoteOutlinedIcon/>;
             case 'company':
                 return <CorporateFareOutlinedIcon/>;
+            case 'search':
+                return <SearchOutlinedIcon/>;
         }
     }
 
