@@ -95,7 +95,14 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
- 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      navigate("/search");
+    }
+  };
+  const handleSearchChange = (event) => {
+    setSearchValue(event.target.value);
+  };
 
   // Render the notifications menu
   const renderMenu = () => (
@@ -139,7 +146,17 @@ function DashboardNavbar({ absolute, light, isMini }) {
         {isMini ? null : (
           <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
             <MDBox pr={1}>
-              
+              <MDInput
+                label="Search here"
+                InputProps={
+                  {startAdornment: <InputAdornment position="end">
+                    {<SearchOutlinedIcon/>}
+                    </InputAdornment>}
+                  }
+                value={searchValue}
+                onChange={handleSearchChange}
+                onKeyPress={handleKeyPress}
+              />
             </MDBox>
             <MDBox color={light ? "white" : "inherit"}>
               <IconButton

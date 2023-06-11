@@ -45,7 +45,6 @@ import SignUp from "layouts/authentication/sign-up";
 import Registro from "layouts/registro-certi";
 import { Space, Table, Tag } from 'antd';
 import Search from "layouts/search";
-import Search2 from "layouts/search_2";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -62,19 +61,11 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Búsqueda Persona",
+    name: "Búsqueda",
     key: "search",
-    icon: <Icon fontSize="small">person</Icon>,
+    icon: <Icon fontSize="small">search</Icon>,
     route: "/search",
     component: <Search/>,
-  },
-  {
-    type: "collapse",
-    name: "Búsqueda Certificacion",
-    key: "search_2",
-    icon: <Icon fontSize="small">folder</Icon>,
-    route: "/search_2",
-    component: <Search2/>,
   },
   {
     type: "collapse",
