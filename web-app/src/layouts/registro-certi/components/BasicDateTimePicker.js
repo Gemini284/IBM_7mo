@@ -28,7 +28,7 @@ function BasicDateTimePicker() {
           margin="normal"
           required
           id="fecha"
-          label="Selecciona una fecha"
+          label="Selecciona una fecha (yyyy/MM/dd)"
           name="fecha"
           autoComplete="fecha"
           autoFocus
