@@ -16,7 +16,8 @@ Coded by www.creative-tim.com
 import { useState, useEffect } from "react";
 
 // react-router components
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate} from "react-router-dom";
+
 
 // prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
@@ -35,6 +36,8 @@ import MDInput from "components/MDInput";
 // Material Dashboard 2 React example components
 import Breadcrumbs from "examples/Breadcrumbs";
 import NotificationItem from "examples/Items/NotificationItem";
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import { InputAdornment} from "@mui/material";
 
 // Custom styles for DashboardNavbar
 import {
@@ -59,6 +62,8 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller;
   const [openMenu, setOpenMenu] = useState(false);
   const route = useLocation().pathname.split("/").slice(1);
+  const [searchValue, setSearchValue] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Setting the navbar type
@@ -90,6 +95,14 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      navigate("/search");
+    }
+  };
+  const handleSearchChange = (event) => {
+    setSearchValue(event.target.value);
+  };
 
   // Render the notifications menu
   const renderMenu = () => (
@@ -132,6 +145,19 @@ function DashboardNavbar({ absolute, light, isMini }) {
         </MDBox>
         {isMini ? null : (
           <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
+            <MDBox pr={1}>
+              <MDInput
+                label="Search here"
+                InputProps={
+                  {startAdornment: <InputAdornment position="end">
+                    {<SearchOutlinedIcon/>}
+                    </InputAdornment>}
+                  }
+                value={searchValue}
+                onChange={handleSearchChange}
+                onKeyPress={handleKeyPress}
+              />
+            </MDBox>
             <MDBox color={light ? "white" : "inherit"}>
               <IconButton
                 size="small"

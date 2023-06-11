@@ -16,11 +16,7 @@ import { Space, Table, Tag } from 'antd';
 import { Dashboard } from '@mui/icons-material';
 import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
 import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
-
-
-const onChange = (date, dateString) => {
-  console.log(date, dateString);
-};
+import MDBox from 'components/MDBox';
 
 const columns = [
   {
@@ -99,59 +95,9 @@ const data = [
     tags: ['cool', 'teacher'],
   },
 ];
-const SearchComponent = () => <Table columns={columns} dataSource={data} />;
 
-export default function PersonSearch() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
-
+export default function TableSearch() {
   return (
-    <DashboardLayout>
-      <DashboardNavbar/>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Typography component="h1" variant="h8">
-            Resultado de Busqueda
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <Typography component="h2" variant="h6">
-                Id del empleado
-            </Typography>
-            <TextField InputProps={{startAdornment: <InputAdornment position="start">
-              <PersonOutlineIcon />
-              </InputAdornment>}}
-              margin="normal"
-              required
-              fullWidth
-              id="empleado"
-              label="Id de empleado"
-              name="empleado"
-              autoComplete="empleado"
-              autoFocus
-            />
-            <Typography component="h2" variant="h6">
-                Lista de Empleados
-            </Typography>
-            <SearchComponent></SearchComponent>
-
-           
-          </Box>
-        </Box>
-      </Container>
-    </DashboardLayout>
+    <Table columns={columns} dataSource={data} />
   );
 }

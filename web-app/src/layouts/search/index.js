@@ -4,6 +4,9 @@ import { Grid } from "@mui/material";
 import MDBox from "components/MDBox";
 import FormInput from "components/FormInput";
 import CustomizedSwitch from "components/CustomizedSwitch";
+import Typography from '@mui/material/Typography';
+import TableSearch from "./layouts/tableSearch.js";
+import SummarySearch from "./layouts/summarySearch/index.js";
 
 export default function Search(){
 
@@ -12,24 +15,40 @@ export default function Search(){
             <DashboardNavbar/>
             <MDBox py={1}>
                 <Grid container spacing={3}>
+                <Grid item xs={12} md={6}>
+                    <MDBox mb={1.5}>
+                    <Typography component="h1" variant="h8">
+                        Resultados de Búsqueda
+                    </Typography>
+                    </MDBox>
+                </Grid>
+                </Grid>
+            </MDBox>
+            <MDBox py={1}>
+                <Grid container spacing={3} justifyContent="space-around" alignItems="flex-start" direction="column">
                     <Grid item xs>
                         <MDBox mb={1.5}>
-                        <FormInput 
-                            id="search"
-                            label="Busca una ID de empleado"
-                            name="search"
-                            icon="search"/>
+                            <Typography component="h2" variant="h6">
+                                Resumen
+                            </Typography>
                         </MDBox>
                     </Grid>
+                    <Grid item xs> 
+                        <SummarySearch/>
+                    </Grid>
                     <Grid item xs>
-                        <MDBox mb={1.5}>
-                            <CustomizedSwitch/>
+                        <MDBox>
+                            <Typography component="h2" variant="h6">
+                                Lista
+                            </Typography>
                         </MDBox>
+                    </Grid>
+                    <Grid item>
+                        <TableSearch/>
                     </Grid>
                 </Grid>
             </MDBox>
         </DashboardLayout>
-
     );
 
 }

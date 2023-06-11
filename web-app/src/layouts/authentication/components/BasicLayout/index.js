@@ -1,7 +1,3 @@
-/*
-a
-*/
-
 // p
 import PropTypes from "prop-types";
 

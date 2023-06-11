@@ -13,10 +13,10 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -41,8 +41,11 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
-function Basic() {
+function Login() {
   const [rememberMe, setRememberMe] = useState(false);
+  const [isLogged, setIsLogged] = useState([]);
+  
+  const navigate = useNavigate();
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
@@ -63,6 +66,10 @@ function Basic() {
   const handleChange = (fieldName) => (event) => {
     setValues({...values, [fieldName]: event.target.value})
   }
+
+  useEffect(() => {
+    localStorage.setItem('isLogged', JSON.stringify(isLogged));
+  }, [isLogged]);
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -86,6 +93,8 @@ function Basic() {
           fetchError: true,
           fetchErrorMsg: error.msg,
         })
+      } else {
+        navigate("/dashboard");
       }
 
       const data = await res.json()
@@ -96,7 +105,8 @@ function Basic() {
         password: "",
         showPassword: false,
       })
-      return
+
+      return 
     } catch (error) {
       return console.log(error.message)
     }
@@ -152,4 +162,4 @@ function Basic() {
   );
 }
 
-export default Basic;
+export default Login;
