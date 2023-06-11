@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { TextField } from '@mui/material';
-import { InputAdornment } from '@mui/material';
+import { TextField, InputAdornment, Typography } from '@mui/material';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DateTimePicker, DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-
+import { Grid } from '@mui/material';
 
 function BasicDateTimePicker() {
   const [selectedDate, handleDateChange] = useState();
 
   return (
-    
+    <Grid item xs>    
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
         disableFuture
@@ -28,15 +27,16 @@ function BasicDateTimePicker() {
             </InputAdornment>}}
           margin="normal"
           required
-          fullWidth
           id="fecha"
           label="Selecciona una fecha"
           name="fecha"
           autoComplete="fecha"
           autoFocus
+          fullWidth
           />}
       /> 
     </LocalizationProvider>
+    </Grid>
   );
 }
 export default BasicDateTimePicker;
