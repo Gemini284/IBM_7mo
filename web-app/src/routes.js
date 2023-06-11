@@ -72,7 +72,7 @@ const routes = [
     type: "collapse",
     name: "Búsqueda Certificacion",
     key: "search_2",
-    icon: <Icon fontSize="small">search</Icon>,
+    icon: <Icon fontSize="small">folder</Icon>,
     route: "/search_2",
     component: <Search2/>,
   },
