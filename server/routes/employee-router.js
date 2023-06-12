@@ -6,7 +6,6 @@ const router = express.Router();
 router.get("/", async(req, res) => {
     try{
         let result = await Employee.find();
-        console.log(result);
         res.status(200).json(result);
     }
     catch(error){
@@ -54,7 +53,7 @@ router.get("/search", async (req, res) => {
     const type = decodeURIComponent(req.query.type);
     let query = {};
     
-    if (type.length <= 13 && type.slice(-3) === "IBM") {
+    if (/[A-Za-z0-9]{9,10}IBM/.test(type)) {
         query = {uid: type}
 
     } else {

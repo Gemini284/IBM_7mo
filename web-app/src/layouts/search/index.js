@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import { Grid } from "@mui/material";
@@ -10,6 +10,8 @@ import TableSearch from "./layouts/tableSearch.js";
 import SummarySearch from "./layouts/summarySearch/index.js";
 import { AudioOutlined } from '@ant-design/icons';
 import { Button, Input, Space } from 'antd';
+import { useLocation } from "react-router-dom";
+import queryString from 'query-string';
 
 const suffix = (
   <AudioOutlined
@@ -20,9 +22,48 @@ const suffix = (
   />
 );
 
-const onSearch = (value) => console.log(value);
-
 export default function Search(){
+    const location = useLocation();
+    const param = new URLSearchParams(location.search);
+    const search = param.get('type');
+    const [data, setData] = useState([]);
+    const [errors, setErrors] = useState({
+        uid: false,
+        name: false,
+        fetchError: false,
+        fetchErrorMsg: "",
+    })
+
+    useEffect(() => {
+        const handleSearchSubmit = async () => {
+    
+            try {
+              const query = encodeURIComponent(search);
+              const res = await fetch(`/api/employee/search?type=${query}`, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+              })
+        
+              if(!res.ok) {
+                const error = await res.json()
+                return setErrors({
+                  ...errors,
+                  fetchError: true,
+                  fetchErrorMsg: error.msg,
+                })
+              } 
+              
+              setData(await res.json());
+        
+            } catch(error){
+              console.log(error.message)
+            }
+        }
+        handleSearchSubmit();
+
+    }, [search]);
 
     return (
         <DashboardLayout>

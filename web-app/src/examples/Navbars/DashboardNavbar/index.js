@@ -56,6 +56,7 @@ import {
   setOpenConfigurator,
 } from "context";
 
+
 function DashboardNavbar({ absolute, light, isMini}) {
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useMaterialUIController();
@@ -64,12 +65,6 @@ function DashboardNavbar({ absolute, light, isMini}) {
   const route = useLocation().pathname.split("/").slice(1);
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState();
-  const [errors, setErrors] = useState({
-    uid: false,
-    name: false,
-    fetchError: false,
-    fetchErrorMsg: "",
-  })
   useEffect(() => {
     // Setting the navbar type
     if (fixedNavbar) {
@@ -108,36 +103,15 @@ function DashboardNavbar({ absolute, light, isMini}) {
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       handleSearchSubmit(event);
-      navigate("/search");
     }
   };
 
   const handleSearchSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      const query = encodeURIComponent(event.target.value);
-      const res = await fetch(`/api/employee/search?type=${query}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      })
-
-      if(!res.ok) {
-        const error = await res.json()
-        return setErrors({
-          ...errors,
-          fetchError: true,
-          fetchErrorMsg: error.msg,
-        })
-      } 
-      
-      const data = await res.json();
-
-    } catch(error){
-      console.log(error.message)
-    }
+    const query = encodeURIComponent(event.target.value);
+    const path = `/search?type=${query}`;
+    navigate(path);
   }
 
   // Render the notifications menu
