@@ -62,8 +62,17 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller;
   const [openMenu, setOpenMenu] = useState(false);
   const route = useLocation().pathname.split("/").slice(1);
-  const [searchValue, setSearchValue] = useState('');
   const navigate = useNavigate();
+  const [values, setValues] = useState({
+      uid: "",
+      name: "",
+  });
+  const [errors, setErrors] = useState({
+    email: false,
+    password: false,
+    fetchError: false,
+    fetchErrorMsg: "",
+  })
 
   useEffect(() => {
     // Setting the navbar type
@@ -95,14 +104,51 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
+  
+  const handleSearchChange = (fieldName) => (event) => {
+    setValues({...values, [fieldName]: event.target.value})
+}
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
+      handleSearchSubmit();
       navigate("/search");
     }
   };
-  const handleSearchChange = (event) => {
-    setSearchValue(event.target.value);
-  };
+
+  const handleSearchSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const res = await fetch('/api/certification/:name', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: values.name,
+        }),
+      })
+
+      if(!res.ok) {
+        const error = await res.json()
+        return setErrors({
+          ...errors,
+          fetchError: true,
+          fetchErrorMsg: error.msg,
+        })
+      } 
+
+      const data = await res.json()
+      console.log({data})
+
+      setValues({
+        name: "",
+      })
+      return
+    } catch(error){
+      return console.log(error.message)
+    }
+  }
 
   // Render the notifications menu
   const renderMenu = () => (
@@ -153,8 +199,8 @@ function DashboardNavbar({ absolute, light, isMini }) {
                     {<SearchOutlinedIcon/>}
                     </InputAdornment>}
                   }
-                value={searchValue}
-                onChange={handleSearchChange}
+                value={values.name}
+                onChange={handleSearchChange('name')}
                 onKeyPress={handleKeyPress}
               />
             </MDBox>
