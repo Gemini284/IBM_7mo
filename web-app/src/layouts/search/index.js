@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import { Grid } from "@mui/material";
@@ -10,9 +11,10 @@ import SummarySearch from "./layouts/summarySearch/index.js";
 
 export default function Search(){
 
+
+
     return (
         <DashboardLayout>
-            <DashboardNavbar/>
             <MDBox py={1}>
                 <Grid container spacing={3}>
                 <Grid item xs={12} md={6}>
