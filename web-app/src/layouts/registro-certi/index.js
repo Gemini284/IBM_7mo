@@ -83,7 +83,6 @@ export default function RegistroCertificate() {
 
   return (
     <DashboardLayout>
-      <DashboardNavbar />
       <MDBox py={1}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
