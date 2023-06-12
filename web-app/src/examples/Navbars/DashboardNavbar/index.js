@@ -56,21 +56,20 @@ import {
   setOpenConfigurator,
 } from "context";
 
-function DashboardNavbar({ absolute, light, isMini }) {
+function DashboardNavbar({ absolute, light, isMini}) {
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useMaterialUIController();
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller;
   const [openMenu, setOpenMenu] = useState(false);
   const route = useLocation().pathname.split("/").slice(1);
   const navigate = useNavigate();
-  const [searchValue, setSearchValue] = useState({});
+  const [searchValue, setSearchValue] = useState();
   const [errors, setErrors] = useState({
     uid: false,
     name: false,
     fetchError: false,
     fetchErrorMsg: "",
   })
-
   useEffect(() => {
     // Setting the navbar type
     if (fixedNavbar) {
@@ -118,7 +117,6 @@ function DashboardNavbar({ absolute, light, isMini }) {
 
     try {
       const query = encodeURIComponent(event.target.value);
-      console.log(query);
       const res = await fetch(`/api/employee/search?type=${query}`, {
         method: 'GET',
         headers: {
@@ -135,12 +133,10 @@ function DashboardNavbar({ absolute, light, isMini }) {
         })
       } 
       
-      const data = await res.json()
-      console.log({data})
+      const data = await res.json();
 
-      return
     } catch(error){
-      return console.log(error.message)
+      console.log(error.message)
     }
   }
 
@@ -187,7 +183,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
           <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
             <MDBox pr={1}>
               <MDInput
-                label="Search here"
+                label="Busca un empleado o certificación"
                 InputProps={
                   {startAdornment: <InputAdornment position="end">
                     {<SearchOutlinedIcon/>}

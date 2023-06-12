@@ -52,6 +52,7 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 // Images
 import brandWhite from "./assets/images/ibm-icons/logo_white.png";
 import brandDark from "./assets/images/ibm-icons/logo_blue.png";
+import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -123,7 +124,7 @@ export default function App() {
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
       {layout === "dashboard" && (
-        <>
+        <DashboardLayout>
           <DashboardNavbar/>
           <Sidenav
             color={sidenavColor}
@@ -134,12 +135,12 @@ export default function App() {
             onMouseLeave={handleOnMouseLeave}
           />
           <Configurator />
-        </>
+        </DashboardLayout>
       )}
       {layout === "vr" && <Configurator />}
       <Routes>
         {getRoutes(routes)}
-        <Route path="*" element={ <Navigate to="/authentication/sign-in" />}/>
+        <Route path="*" element={<Navigate to="/authentication/sign-in" />}/>
       </Routes>
     </ThemeProvider>
   );

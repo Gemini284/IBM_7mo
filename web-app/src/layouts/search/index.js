@@ -11,7 +11,6 @@ import SummarySearch from "./layouts/summarySearch/index.js";
 import { AudioOutlined } from '@ant-design/icons';
 import { Button, Input, Space } from 'antd';
 
-const { Search } = Input;
 const suffix = (
   <AudioOutlined
     style={{
@@ -23,9 +22,7 @@ const suffix = (
 
 const onSearch = (value) => console.log(value);
 
-export default function Search1(){
-
-
+export default function Search(){
 
     return (
         <DashboardLayout>
@@ -66,5 +63,4 @@ export default function Search1(){
             </MDBox>
         </DashboardLayout>
     );
-
 }
