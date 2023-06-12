@@ -37,8 +37,8 @@ export default function RegistroCertificate() {
     setOrganization(event.target.value);
   };
 
-  const handleDateChange = (event) => {
-    setDate(event.target.value);
+  const handleDateChange = (date) => {
+    setDate(date);
   };
 
   const handleSubmit = (event) => {
@@ -128,7 +128,7 @@ export default function RegistroCertificate() {
             />
           </Grid>
           <Grid container item spacing={3} direction="row">
-            <BasicDateTimePicker />
+            <BasicDateTimePicker handleDateChange={handleDateChange}/>
             <FormInput
               id="organization"
               label="Ingrese la organización que lo certifica"
