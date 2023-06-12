@@ -9,7 +9,7 @@ router.get("/", async(req, res) => {
         console.log(result);
         res.status(200).json(result);
     }
-    catch{
+    catch(error){
         res.status(500).json({message: error.message});
     }
 });
@@ -32,19 +32,40 @@ router.get("/top", async(req, res) => {
         let result = await Employee.aggregate(query);
         res.status(200).json(result);
     }
-    catch{
+    catch(error){
         res.status(500).json({message: error.message});
     }
 });
-
+ 
 // get by uid
-router.get("/:uid", async (req, res) => {
+router.get("/search/:uid", async (req, res) => {
     let query = {uid: req.params.uid};
     try{
         let result = await Employee.find(query);
         res.status(200).json(result);
     }
-    catch{
+    catch(error){
+        res.status(500).json({message: error.message});
+    }
+})
+
+// get by certification
+router.get("/search", async (req, res) => {
+    const type = decodeURIComponent(req.query.type);
+    let query = {};
+    
+    if (type.length <= 13 && type.slice(-3) === "IBM") {
+        query = {uid: type}
+
+    } else {
+        query = {"employee_certifications.name": type};
+    }
+
+    try{
+        let result = await Employee.find(query);
+        res.status(200).json(result);
+    }
+    catch(error){
         res.status(500).json({message: error.message});
     }
 })
@@ -56,7 +77,7 @@ router.get("/:organization", async (req, res) => {
         let result = await Employee.find(query);
         res.status(200).json(result);
     }
-    catch{
+    catch(error){
         res.status(500).json({message: error.message});
     }
 })
@@ -68,7 +89,7 @@ router.get("/:location", async (req, res) => {
         let result = await Employee.find(query);
         res.status(200).json(result);
     }
-    catch{
+    catch(error){
         res.status(500).json({message: error.message});
     }
 })
@@ -80,7 +101,7 @@ router.get("/:certification", async (req, res) => {
         let result = await Employee.find(query);
         res.status(200).json(result);
     }
-    catch{
+    catch(error){
         res.status(500).json({message: error.message});
     }
 })

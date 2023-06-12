@@ -22,6 +22,7 @@ Coded by www.creative-tim.com
 const colors = {
   background: {
     default: "#f0f2f5",
+    sidenav: "#3D39F2",
   },
 
   text: {
@@ -133,7 +134,7 @@ const colors = {
     },
 
     dark: {
-      main: "#42424a",
+      main: "#42424A",
       state: "#191919",
     },
   },

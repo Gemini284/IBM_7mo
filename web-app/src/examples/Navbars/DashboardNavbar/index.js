@@ -63,13 +63,10 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const [openMenu, setOpenMenu] = useState(false);
   const route = useLocation().pathname.split("/").slice(1);
   const navigate = useNavigate();
-  const [values, setValues] = useState({
-      uid: "",
-      name: "",
-  });
+  const [searchValue, setSearchValue] = useState({});
   const [errors, setErrors] = useState({
-    email: false,
-    password: false,
+    uid: false,
+    name: false,
     fetchError: false,
     fetchErrorMsg: "",
   })
@@ -105,12 +102,13 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
   
-  const handleSearchChange = (fieldName) => (event) => {
-    setValues({...values, [fieldName]: event.target.value})
-}
+  const handleSearchChange = (event) => {
+    setSearchValue(event.target.value)
+  }
+
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
-      handleSearchSubmit();
+      handleSearchSubmit(event);
       navigate("/search");
     }
   };
@@ -119,14 +117,13 @@ function DashboardNavbar({ absolute, light, isMini }) {
     event.preventDefault();
 
     try {
-      const res = await fetch('/api/certification/:name', {
+      const query = encodeURIComponent(event.target.value);
+      console.log(query);
+      const res = await fetch(`/api/employee/search?type=${query}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          name: values.name,
-        }),
       })
 
       if(!res.ok) {
@@ -137,13 +134,10 @@ function DashboardNavbar({ absolute, light, isMini }) {
           fetchErrorMsg: error.msg,
         })
       } 
-
+      
       const data = await res.json()
       console.log({data})
 
-      setValues({
-        name: "",
-      })
       return
     } catch(error){
       return console.log(error.message)
@@ -199,8 +193,8 @@ function DashboardNavbar({ absolute, light, isMini }) {
                     {<SearchOutlinedIcon/>}
                     </InputAdornment>}
                   }
-                value={values.name}
-                onChange={handleSearchChange('name')}
+                value={searchValue}
+                onChange={handleSearchChange}
                 onKeyPress={handleKeyPress}
               />
             </MDBox>

@@ -22,7 +22,7 @@ Coded by www.creative-tim.com
 const colors = {
   background: {
     default: "#1a2035",
-    sidenav: "#1f283e",
+    sidenav: "#3D39F2",
     card: "#202940",
   },
 

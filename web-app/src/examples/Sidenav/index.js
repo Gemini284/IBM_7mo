@@ -45,6 +45,7 @@ import {
   setMiniSidenav,
   setTransparentSidenav,
   setWhiteSidenav,
+  setSidenavColor,
 } from "context";
 
 function Sidenav({ color, brand, brandName, routes, ...rest }) {
