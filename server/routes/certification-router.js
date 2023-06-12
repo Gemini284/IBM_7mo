@@ -87,7 +87,7 @@ router.get("/:type", async (req, res) => {
 })
 
 // create certification
-router.post("/", async (req, res) => {
+router.post("/newCertification", async (req, res) => {
     let data = {
         uid: req.body.uid,
         name: req.body.name,

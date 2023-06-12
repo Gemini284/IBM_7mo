@@ -5,36 +5,43 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DateTimePicker, DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { Grid } from '@mui/material';
 
-function BasicDateTimePicker() {
-  const [selectedDate, handleDateChange] = useState();
+function BasicDateTimePicker({ handleDateChange }) {
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const handleChange = (date) => {
+    setSelectedDate(date);
+    handleDateChange(date); // Actualizar el estado en el componente padre
+  };
 
   return (
-    <Grid item xs>    
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DatePicker
-        disableFuture
-        label="Date"
-        inputFormat='yyyy/MM/dd'
-        views={['month', 'day']}
-        value={selectedDate}
-        onChange={handleDateChange}
-        showDaysOutsideCurrentMonth
+    <Grid item xs>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <DatePicker
+          disableFuture
+          label="Date"
+          inputFormat='yyyy/MM/dd'
+          views={['month', 'day']}
+          value={selectedDate}
+          onChange={handleChange}
+          showDaysOutsideCurrentMonth
 
-        renderInput={(params) => <TextField
-          {...params}
-          InputProps={{startAdornment: <InputAdornment position="end">
-            <CalendarTodayIcon />
-            </InputAdornment>}}
-          required
-          id="fecha"
-          label="Selecciona una fecha (yyyy/MM/dd)"
-          name="fecha"
-          autoFocus
-          fullWidth
-          margin="normal"
+          renderInput={(params) => <TextField
+            {...params}
+            InputProps={{
+              startAdornment: <InputAdornment position="end">
+                <CalendarTodayIcon />
+              </InputAdornment>
+            }}
+            required
+            id="fecha"
+            label="Selecciona una fecha (yyyy/MM/dd)"
+            name="fecha"
+            autoFocus
+            fullWidth
+            margin="normal"
           />}
-      /> 
-    </LocalizationProvider>
+        />
+      </LocalizationProvider>
     </Grid>
   );
 }
