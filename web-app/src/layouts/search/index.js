@@ -29,22 +29,6 @@ export default function Search1(){
 
     return (
         <DashboardLayout>
-            <MDBox py={1}>
-                <Grid container spacing={3}>
-                <Grid item xs={12} md={8}>
-                <Search
-                    placeholder="Buscar un ID de empleado"
-                    allowClear
-                    enterButton="Buscar"
-                    size="large"
-                    onSearch={onSearch}
-                    /> 
-                
-
-                </Grid>
-                </Grid>     
-
-            </MDBox>
 
             <MDBox py={1}>
                 <Grid container spacing={3}>
