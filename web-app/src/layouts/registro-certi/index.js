@@ -8,6 +8,10 @@ import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
 import MDButton from 'components/MDButton';
 import FormInput from '../../components/FormInput';
 import { useState } from 'react';
+import mongoose from 'mongoose';
+import Certification from './components/certification-model';
+// const Certification = require('./components/certification-model');
+// const mongoose = require('mongoose');
 
 
 
@@ -41,7 +45,7 @@ export default function RegistroCertificate() {
     setDate(date);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = {
       empleado,
@@ -72,14 +76,19 @@ export default function RegistroCertificate() {
     }
   
     try {
-      // guardar en la base de datos
-      console.log(formData);
+      const newCertification = await Certification.create({
+        uid: empleado,
+        name: certificacion,
+        issue_date: date,
+        type: organization,
+      });
+      newCertification.save();
       alert('Certificación registrada correctamente');
     } catch (error) {
+      console.error('Error al registrar la certificación:', error);
       alert('Ocurrió un error al registrar la certificación');
     }
   };
-
 
   return (
     <DashboardLayout>
