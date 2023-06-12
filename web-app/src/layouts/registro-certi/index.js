@@ -82,7 +82,7 @@ export default function RegistroCertificate() {
         issue_date: date,
         type: organization,
       });
-      newCertification.save();
+      
       alert('Certificación registrada correctamente');
     } catch (error) {
       console.error('Error al registrar la certificación:', error);
