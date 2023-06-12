@@ -8,84 +8,90 @@ import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
 import MDButton from 'components/MDButton';
 import FormInput from '../../components/FormInput';
 import { useState } from 'react';
-import mongoose from 'mongoose';
-import Certification from './components/certification-model';
+//import Certification from './components/certification-model';
 // const Certification = require('./components/certification-model');
 // const mongoose = require('mongoose');
-
-
 
 export default function RegistroCertificate() {
 
   // registrar certificaciones
+  const [values, setValues] = useState({
+    uid: "",
+    name: "",
+    issue_date: "",
+    type: "",
+    description: "",
+  });
 
-  const [empleado, setEmpleado] = useState('');
-  const [certificacion, setCertificacion] = useState('');
-  const [description, setDescription] = useState('');
-  const [organization, setOrganization] = useState('');
-  const [date, setDate] = useState('');
+  const [errors, setErrors] = useState({
+    uid: false,
+    name: false,
+    issue_date: false,
+    type: false,
+    description: false,
+    fetchError: false,
+    fetchErrorMsg: "",
+  })
 
-  const handleEmpleadoChange = (event) => {
-    setEmpleado(event.target.value);
-  };
+  const handleChange = (fieldName) => (event) => {
+    setValues({...values, [fieldName]: event.target.value});
+  }
 
-  const handleCertificacionChange = (event) => {
-    setCertificacion(event.target.value);
-  };
-
-  const handleDescriptionChange = (event) => {
-    setDescription(event.target.value);
-  };
-
-  const handleOrganizationChange = (event) => {
-    setOrganization(event.target.value);
-  };
-
-  const handleDateChange = (date) => {
-    setDate(date);
-  };
+  const handleDateChange = (event) => {
+    setValues({...values, ['issue_date']: event});
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const formData = {
-      empleado,
-      certificacion,
-      description,
-      organization,
-      date,
-    };
   
+    /*
     // checar que no estén vacíos los campos
-    if (empleado === '' || certificacion === '' || description === '' || organization === '' || date === '') {
+    if (values.uid === '' || values.name === '' || values.description === '' || values.type === '' || values.issue_date === '') {
       alert('Todos los campos son obligatorios');
       return;
     }
   
     // checar que el id cumpla con la siguiente regex ^[A-Z0-9]{10}IBM$
-    if (!/^[A-Z0-9]{10}IBM$/.test(empleado)) {
+    if (!/^[A-Z0-9]{10}IBM$/.test(values.uid)) {
       alert('El id de empleado no es válido');
       return;
     }
   
     // checar que la fecha sea menor o igual a la fecha actual
     const today = new Date();
-    const dateToCheck = new Date(date);
+    const dateToCheck = new Date(values.issue_date);
     if (dateToCheck > today) {
       alert('La fecha no puede ser mayor a la fecha actual');
       return;
     }
+    */
   
     try {
-      const newCertification = await Certification.create({
-        uid: empleado,
-        name: certificacion,
-        issue_date: date,
-        type: organization,
-      });
+      const res = await fetch('/api/certification/newCertification', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          uid: values.uid,
+          name: values.name,
+          issue_date: values.issue_date,
+          type: values.type,
+          description: values.description,
+        }),
+      })
       
+      if(!res.ok){
+        const error = await res.json()
+        return setErrors({
+          ...errors,
+          fetchError: true,
+          fetchErrorMsg: error.msg,
+        })
+      }
       alert('Certificación registrada correctamente');
     } catch (error) {
-      console.error('Error al registrar la certificación:', error);
+      console.error('Error al registrar la certificación:', error.message);
       alert('Ocurrió un error al registrar la certificación');
     }
   };
@@ -111,16 +117,16 @@ export default function RegistroCertificate() {
               label="Id de empleado"
               name="empleado"
               icon="person"
-              onChange={handleEmpleadoChange}
-              value={empleado}
+              onChange={handleChange('uid')}
+              value={values.uid}
             />
             <FormInput
               name="certificacion"
               label="Nombre de la Certificación"
               id="certificado"
               icon="certification"
-              onChange={handleCertificacionChange}
-              value={certificacion}
+              onChange={handleChange('name')}
+              value={values.name}
             />
           </Grid>
           <Grid container item spacing={3} direction="row">
@@ -132,19 +138,19 @@ export default function RegistroCertificate() {
               helperText="Describe brevemente la certificación"
               multiline
               minRows={5}
-              onChange={handleDescriptionChange}
-              value={description}
+              onChange={handleChange('description')}
+              value={values.description}
             />
           </Grid>
           <Grid container item spacing={3} direction="row">
-            <BasicDateTimePicker handleDateChange={handleDateChange}/>
+            <BasicDateTimePicker onDateChange={handleDateChange}/>
             <FormInput
               id="organization"
               label="Ingrese la organización que lo certifica"
               name="organization"
               icon="company"
-              onChange={handleOrganizationChange}
-              value={organization}
+              value={values.type}
+              onChange={handleChange('type')}
             />
           </Grid>
           <Grid container item spacing={3} direction="row">
@@ -153,7 +159,8 @@ export default function RegistroCertificate() {
                 type="submit"
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                onClick={handleSubmit}>
+                onClick={handleSubmit}
+                disabled={errors.uid || errors.name || errors.issue_date || errors.type || errors.description}>
                 Registrar
               </MDButton>
             </Grid>

@@ -17,6 +17,9 @@ const certificationSchema = new mongoose.Schema({
     type: {
         type: String,
         required: true
+    },
+    description: {
+        type: String,
     }
 }, {
     timestamps: true,

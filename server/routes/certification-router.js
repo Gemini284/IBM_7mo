@@ -88,17 +88,36 @@ router.get("/:type", async (req, res) => {
 
 // create certification
 router.post("/newCertification", async (req, res) => {
-    let data = {
+
+    // checar que no estén vacíos los campos
+    if (req.body.uid === '' || req.body.name === '' || req.body.description === '' || req.body.type === '' || req.body.issue_date === '') {
+        return res.status(400).send("All fields are required");
+    }
+    
+    // checar que el id cumpla con la siguiente regex ^[A-Z0-9]{10}IBM$
+    if (!/[A-Za-z0-9]{9,10}IBM/.test(req.body.uid)) {
+        return res.status(400).send('Employee ID is not valid');
+    }
+    
+    // checar que la fecha sea menor o igual a la fecha actual
+    const today = new Date();
+    const dateToCheck = new Date(req.body.issue_date);
+    if (dateToCheck > today) {
+        return res.status(400).send('cannot use a future date');
+    }
+
+    const certification = new Certification({
         uid: req.body.uid,
         name: req.body.name,
         issue_date: req.body.issue_date,
         type: req.body.type,
-    };
+        description: req.body.description,
+    });
     try{
-        let result = await Certification.insertOne(data);
+        const result = await certification.save();
         res.status(200).json(result);
     }
-    catch{
+    catch(error){
         res.status(500).json({message: error.message});
     }
 })

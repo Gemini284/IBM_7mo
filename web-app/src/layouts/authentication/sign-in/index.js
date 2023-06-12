@@ -97,18 +97,14 @@ function Login() {
         navigate("/dashboard");
       }
 
-      const data = await res.json()
-      console.log({data})
-
       setValues({
         email: "",
         password: "",
         showPassword: false,
       })
-
-      return 
+      alert('Login exitoso');
     } catch (error) {
-      return console.log(error.message)
+      console.error(error.message)
     }
   }
 

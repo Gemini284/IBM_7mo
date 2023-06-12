@@ -5,12 +5,12 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DateTimePicker, DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { Grid } from '@mui/material';
 
-function BasicDateTimePicker({ handleDateChange }) {
+function BasicDateTimePicker({onDateChange}) {
   const [selectedDate, setSelectedDate] = useState(null);
 
-  const handleChange = (date) => {
-    setSelectedDate(date);
-    handleDateChange(date); // Actualizar el estado en el componente padre
+  const handleChange = (event) => {
+    setSelectedDate(event);
+    onDateChange(event);
   };
 
   return (
@@ -22,9 +22,8 @@ function BasicDateTimePicker({ handleDateChange }) {
           inputFormat='yyyy/MM/dd'
           views={['month', 'day']}
           value={selectedDate}
-          onChange={handleChange}
           showDaysOutsideCurrentMonth
-
+          onChange={handleChange}
           renderInput={(params) => <TextField
             {...params}
             InputProps={{
