@@ -12,12 +12,18 @@ import MDTypography from "components/MDTypography";
 function SummaryResultCard({ color, title, value, icon }) {
   return (
     <Card sx={{height: 1/1}}>
-      <MDBox display="flex" justifyContent="space-between" pt={1} px={2} mb={1}>
+      <MDBox display="flex" justifyContent="space-between" pt={1} px={2}>
         <MDBox textAlign="left">
           <MDTypography variant="button" fontWeight="light" color="text">
             {title}
           </MDTypography>
-          <MDTypography variant="h4">{value}</MDTypography>
+        </MDBox>
+      </MDBox>
+      <MDBox pt={1} px={2} display="flex" justifyContent="space-between" height="100%">
+        <MDBox alignItems="center">
+          <MDTypography variant="h4">
+              {value}
+          </MDTypography>
         </MDBox>
       </MDBox>
     </Card>

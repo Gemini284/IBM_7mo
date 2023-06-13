@@ -96,70 +96,57 @@ export default function Search(){
         <DashboardLayout>
             {search ?
             <>
-            <MDBox py={1}>
-                <Grid container spacing={3}>
-                <Grid item xs md={8}>
-                    <MDBox mb={1.5}>
+            <Grid container spacing={3} justifyContent="flex-start">
+                <Grid item xs>
                     <Typography component="h1" variant="h8">
                         Resultados de Búsqueda: {search}
                     </Typography>
-                    </MDBox>
                 </Grid>
+            </Grid>
+            <Grid container spacing={3} justifyContent="space-around" alignItems="flex-start" direction="column">
+                <Grid item xs>
+                    <Typography component="h2" variant="h6">
+                        Resumen
+                    </Typography>
                 </Grid>
-            </MDBox>
-            <MDBox py={1}>
-                <Grid container spacing={3} justifyContent="space-around" alignItems="flex-start" direction="column">
-                    <Grid item xs>
-                        <MDBox mb={3}>
-                            <Typography component="h2" variant="h6">
-                                Resumen
-                            </Typography>
-                        </MDBox>
-                    </Grid>
-                    <Grid item xs>
-                        { searchType ?
-                            <>
-                            {getSummary(data)}
-                            </>
-                        :
-                            <ComplexStatisticsCard
+                <Grid item>
+                    { searchType ?
+                        <> {getSummary(data)} </>:
+                        <ComplexStatisticsCard
                             icon={<PersonOutlineOutlinedIcon/>}
                             title="Empleados Certificados"
                             percentage={{
                                 color: "success",
-                                amount: "55%",
-                                label: "de los empleados totales",
-                            }}
+                                    amount: "55%",
+                                    label: "de los empleados totales",
+                                }}
                             count={data.length}/>
-                        }
-                    </Grid>
-                    <Grid item xs>
-                        <MDBox>
-                            <Typography component="h2" variant="h6">
-                                Lista
-                            </Typography>
-                        </MDBox>
-                    </Grid>
-                    <Grid item>
-                        {searchType ?
+                    }
+                </Grid>
+                <Grid item xs>
+                    <Typography component="h2" variant="h6">
+                        Lista
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    {searchType ?
                         <> {getTable(data)} </> :
                         <EmployeeTableSearch data={data}/>
-                        }
-                    </Grid>
+                    }
                 </Grid>
-            </MDBox>
+            </Grid>
             </>
         : <>
-                <Grid container spacing={3} justifyContent="flex-start" alignItems="center" direction="column">
+            <Grid container spacing={3} justifyContent="flex-start" alignItems="center" direction="column">
                 <Grid item xs >
                     <MDBox component="img" src={Saly} alt="Search Icon"/>
                 </Grid>
-                <Grid item xs >
-                    <Typography component="h1" variant="h8">
-                        ¡Inicia tu Búsqueda!
-                    </Typography>
-                </Grid>
-                </Grid></>}
+            <Grid item xs >
+                <Typography component="h1" variant="h8">
+                    ¡Inicia tu Búsqueda!
+                </Typography>
+            </Grid>
+            </Grid></>}
         </DashboardLayout>
     );
 }

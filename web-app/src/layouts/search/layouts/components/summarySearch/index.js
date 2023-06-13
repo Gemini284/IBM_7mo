@@ -9,8 +9,8 @@ import CorporateFareOutlinedIcon from '@mui/icons-material/CorporateFareOutlined
 export default function SummarySearch(props){
 
   return (
-    <Grid container spacing={3} direction="row" >
-      <Grid item xs={7}>
+    <Grid container spacing={3} direction="row">
+      <Grid item xs>
         <ComplexStatisticsCard
           icon={<GppGoodOutlinedIcon/>}
           title="Certificaciones Actuales"
@@ -23,23 +23,18 @@ export default function SummarySearch(props){
         />
       </Grid>
       <Grid item xs>
-        <Grid container spacing={1} direction="column">
-          <Grid item>
-            <SummaryResultCard
-            icon={<CorporateFareOutlinedIcon/>}
-            title="Departamento"
-            value={props.department}
-            />
-          </Grid>
-          <Grid item>
-            <SummaryResultCard
-            icon={<TravelExploreOutlinedIcon/>}
-            title="Ubicación"
-            value={props.location}
-            />
-          </Grid>
-        </Grid>
-        
+        <SummaryResultCard
+          icon={<CorporateFareOutlinedIcon/>}
+          title="Departamento"
+          value={props.department}
+        />
+      </Grid>
+      <Grid item>
+        <SummaryResultCard
+          icon={<TravelExploreOutlinedIcon/>}
+          title="Ubicación"
+          value={props.location}
+        />
       </Grid>
     </Grid>
   );
