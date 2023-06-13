@@ -6,12 +6,15 @@ import MDBox from "components/MDBox";
 import FormInput from "components/FormInput";
 import CustomizedSwitch from "components/CustomizedSwitch";
 import Typography from '@mui/material/Typography';
-import TableSearch from "./layouts/tableSearch.js";
-import SummarySearch from "./layouts/summarySearch/index.js";
+import TableSearch from "./layouts/components/tableSearch/index.js";
+import SummarySearch from "./layouts/components/summarySearch/index.js";
 import { AudioOutlined } from '@ant-design/icons';
 import { Button, Input, Space } from 'antd';
 import { useLocation } from "react-router-dom";
-import queryString from 'query-string';
+import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard/index.js";
+import GppGoodOutlinedIcon from '@mui/icons-material/GppGoodOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import EmployeeTableSearch from "./layouts/components/employeeTableSearch/index.js";
 
 const suffix = (
   <AudioOutlined
@@ -33,6 +36,17 @@ export default function Search(){
         fetchError: false,
         fetchErrorMsg: "",
     })
+    const [values, setValues] = useState({
+        uid: "",
+        organization: "",
+        work_location: "",
+        employee_certifications: [],
+        count: "",
+    });
+
+    const handleChange = ({fieldName}) => (event) => {
+        setValues({...values, [{fieldName}]: event.target.value})
+    }
 
     useEffect(() => {
         const handleSearchSubmit = async () => {
@@ -65,14 +79,28 @@ export default function Search(){
 
     }, [search]);
 
+    const getSummary = (event) =>
+        event.map((element) => {
+        return <SummarySearch department={element.organization} location={element.work_location} count={element.employee_certifications.length}/>   
+    });
+    
+    const getTable= (event) =>
+    event.map((element) => {
+        return <TableSearch data={element.employee_certifications}/>
+    })
+
+    const searchType = /[A-Za-z0-9]{9,10}IBM/.test(search);
+
     return (
         <DashboardLayout>
+            {search ?
+            <>
             <MDBox py={1}>
                 <Grid container spacing={3}>
-                <Grid item xs={12} md={8}>
+                <Grid item xs md={8}>
                     <MDBox mb={1.5}>
                     <Typography component="h1" variant="h8">
-                        Resultados de Búsqueda
+                        Resultados de Búsqueda: {search}
                     </Typography>
                     </MDBox>
                 </Grid>
@@ -87,8 +115,22 @@ export default function Search(){
                             </Typography>
                         </MDBox>
                     </Grid>
-                    <Grid item xs> 
-                        <SummarySearch/>
+                    <Grid item xs>
+                        { searchType ?
+                            <>
+                            {getSummary(data)}
+                            </>
+                        :
+                            <ComplexStatisticsCard
+                            icon={<PersonOutlineOutlinedIcon/>}
+                            title="Empleados Certificados"
+                            percentage={{
+                                color: "success",
+                                amount: "55%",
+                                label: "de los empleados totales",
+                            }}
+                            count={data.length}/>
+                        }
                     </Grid>
                     <Grid item xs>
                         <MDBox>
@@ -98,10 +140,26 @@ export default function Search(){
                         </MDBox>
                     </Grid>
                     <Grid item>
-                        <TableSearch/>
+                        {searchType ?
+                        <> {getTable(data)} </> :
+                        <EmployeeTableSearch data={data}/>
+                        }
                     </Grid>
                 </Grid>
             </MDBox>
+            </>
+        : <>
+            <MDBox py={1}>
+                <Grid container spacing={3} >
+                <Grid item xs={12} md={8}>
+                    <MDBox mb={1.5}>
+                        <Typography component="h1" variant="h8">
+                            ¡Inicia tu búsqueda!
+                        </Typography>
+                    </MDBox>
+                </Grid>
+                </Grid>
+            </MDBox></>}
         </DashboardLayout>
     );
 }

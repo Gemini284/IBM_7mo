@@ -107,7 +107,7 @@ export default function App() {
     }
   }, []);
 
-  const getRoutes = (allRoutes) =>
+  const getRoutes = (allRoutes) => 
     allRoutes.map((route) => {
       if (route.collapse) {
         return getRoutes(route.collapse);

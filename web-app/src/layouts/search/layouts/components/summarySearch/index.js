@@ -6,7 +6,7 @@ import SummaryResultCard from "examples/Cards/SummaryCards/SummaryResultCard";
 import TravelExploreOutlinedIcon from '@mui/icons-material/TravelExploreOutlined';
 import CorporateFareOutlinedIcon from '@mui/icons-material/CorporateFareOutlined';
 
-export default function SummarySearch(){
+export default function SummarySearch(props){
 
   return (
     <Grid container spacing={3} direction="row" >
@@ -14,12 +14,12 @@ export default function SummarySearch(){
         <ComplexStatisticsCard
           icon={<GppGoodOutlinedIcon/>}
           title="Certificaciones Actuales"
-          count={281}
           percentage={{
             color: "success",
-            amount: "+55%",
+            amount: "55%",
             label: "de las certificaciones totales",
           }}
+          count={props.count}
         />
       </Grid>
       <Grid item xs>
@@ -28,14 +28,14 @@ export default function SummarySearch(){
             <SummaryResultCard
             icon={<CorporateFareOutlinedIcon/>}
             title="Departamento"
-            value={"Finanzas"}
+            value={props.department}
             />
           </Grid>
           <Grid item>
             <SummaryResultCard
             icon={<TravelExploreOutlinedIcon/>}
             title="Ubicación"
-            value={"Guadalajara, JAL, Mexico"}
+            value={props.location}
             />
           </Grid>
         </Grid>

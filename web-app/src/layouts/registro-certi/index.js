@@ -145,9 +145,9 @@ export default function RegistroCertificate() {
           <Grid container item spacing={3} direction="row">
             <BasicDateTimePicker onDateChange={handleDateChange}/>
             <FormInput
-              id="organization"
-              label="Ingrese la organización que lo certifica"
-              name="organization"
+              id="type"
+              label="Ingrese el tipo de certificación"
+              name="type"
               icon="company"
               value={values.type}
               onChange={handleChange('type')}
