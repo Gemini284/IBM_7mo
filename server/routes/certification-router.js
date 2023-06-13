@@ -8,7 +8,7 @@ router.get("/", async(req, res) => {
         let result = await Certification.find();
         res.status(200).json(result);
     }
-    catch{
+    catch(error){
         res.status(500).json({message: error.message});
     }
 });
@@ -33,7 +33,7 @@ router.get("/top", async(req, res) => {
         let result = await Certification.aggregate(query);
         res.status(200).json(result);
     }
-    catch{
+    catch(error){
         res.status(500).json({message: error.message});
     }
 });
@@ -45,7 +45,7 @@ router.get("/:uid", async (req, res) => {
         let result = await Certification.find(query);
         res.status(200).json(result);
     }
-    catch{
+    catch(error){
         res.status(500).json({message: error.message});
     }
 })
@@ -57,7 +57,7 @@ router.get("/:name", async (req, res) => {
         let result = await Certification.find(query);
         res.status(200).json(result);
     }
-    catch{
+    catch(error){
         res.status(500).json({message: error.message});
     }
 })
@@ -69,7 +69,7 @@ router.get("/:date", async (req, res) => {
         let result = await Certification.find(query);
         res.status(200).json(result);
     }
-    catch{
+    catch(error){
         res.status(500).json({message: error.message});
     }
 })
@@ -81,7 +81,7 @@ router.get("/:type", async (req, res) => {
         let result = await Certification.find(query);
         res.status(200).json(result);
     }
-    catch{
+    catch(error){
         res.status(500).json({message: error.message});
     }
 })

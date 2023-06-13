@@ -12,7 +12,7 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-
+import { useEffect, useState, useCallback } from "react";
 // @mui material components
 import Grid from "@mui/material/Grid";
 
@@ -35,7 +35,121 @@ import Projects from "layouts/dashboard/components/Projects";
 //import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 
 function Dashboard() {
+  const reportDataExample = {
+    labels: ["M", "T", "W", "T", "F", "S", "S"],
+    datasets: { label: "Sales", data: [50, 20, 10, 22, 50, 10, 40] },
+  }
   const { sales, tasks } = reportsLineChartData;
+  const [certifications, setCErtifications ] = useState({
+    labels: [],
+    datasets: {
+      label: "",
+      data: []
+    }
+  })
+
+  const [employees, setEmployees] = useState({
+    labels: [],
+    datasets: {
+      label: "",
+      data: []
+    }
+  })
+    
+  const [errors, setErrors] = useState({
+    fetchError: false,
+    fetchErrorMsg: "",
+  })
+  const [certValues, setCertValues] = useState({
+      _id: "",
+      count:""
+  });
+  const [empValues, setEmpValues] = useState({
+    uid: "",
+    organization: "",
+    work_location: "",
+    count: "",
+  });
+
+  const [topCertifications, setTopCertifications] = useState([]);
+  const [topEmployees, setTopEmployees] = useState([]);
+
+  useEffect(() => {
+    const topCertFetch = async() => {
+      try {
+        const res = await fetch(`/api/certification/top`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        })
+
+        if(!res.ok) {
+          const error = await res.json()
+          return setErrors({
+            ...errors,
+            fetchError: true,
+            fetchErrorMsg: error.msg,
+          })
+        } 
+        
+        setTopCertifications(await res.json());
+
+      } catch(error){
+        console.log(error.message)
+      }
+    }
+
+    const handleCertTop = async (event) => {
+      certifications.datasets.label = "Count"
+      
+      event.map((element) => {
+        certifications.labels.push(element._id)
+        certifications.datasets.data.push(element.count)
+      })
+    }
+
+    topCertFetch();
+    handleCertTop(topCertifications);
+  }, [certifications])
+
+  useEffect(() => {
+    const topEmpFetch = async () => {
+      try {
+        const res = await fetch(`/api/employee/top`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        })
+  
+        if(!res.ok) {
+          const error = await res.json()
+          return setErrors({
+            ...errors,
+            fetchError: true,
+            fetchErrorMsg: error.msg,
+          })
+        } 
+        
+        setTopEmployees(await res.json());
+  
+      } catch(error){
+        console.log(error.message)
+      }
+    }
+
+    const handleEmpTop = async (event) => {
+      employees.datasets.label = "Certifications"
+      
+      event.map((element) => {
+        employees.labels.push(element.uid)
+        employees.datasets.data.push(element.count)
+      })
+    }
+    topEmpFetch();
+    handleEmpTop(topEmployees);
+  }, [employees])
 
   return (
     <DashboardLayout>
@@ -106,14 +220,26 @@ function Dashboard() {
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
                 <ReportsBarChart
-                  color="info"
-                  title="website views"
-                  description="Last Campaign Performance"
+                  color="primary"
+                  title="Top 5 Empleados"
+                  description="Los empleados con mayor número de certificaciones"
                   date="campaign sent 2 days ago"
-                  chart={reportsBarChartData}
+                  chart={employees}
                 />
               </MDBox>
             </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <MDBox mb={3}>
+                <ReportsBarChart
+                  color="info"
+                  title="Top 5 Certificaciones"
+                  description="Las certificaciones más frecuentes entre los empleados"
+                  date="campaign sent 2 days ago"
+                  chart={certifications}
+                />
+              </MDBox>
+            </Grid>
+            
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
                 <ReportsLineChart

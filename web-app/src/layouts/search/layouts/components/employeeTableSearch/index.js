@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Space, Table, Tag } from 'antd';
+import DataTable from "examples/Tables/DataTable";
 
 export default function EmployeeTableSearch(props) {
     const columns = [
