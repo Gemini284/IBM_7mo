@@ -40,21 +40,6 @@ function Dashboard() {
     datasets: { label: "Sales", data: [50, 20, 10, 22, 50, 10, 40] },
   }
   const { sales, tasks } = reportsLineChartData;
-  const [certifications, setCErtifications ] = useState({
-    labels: [],
-    datasets: {
-      label: "",
-      data: []
-    }
-  })
-
-  const [employees, setEmployees] = useState({
-    labels: [],
-    datasets: {
-      label: "",
-      data: []
-    }
-  })
     
   const [errors, setErrors] = useState({
     fetchError: false,
@@ -75,81 +60,90 @@ function Dashboard() {
   const [topEmployees, setTopEmployees] = useState([]);
 
   useEffect(() => {
-    const topCertFetch = async() => {
+    const fetchData = async () => {
       try {
-        const res = await fetch(`/api/certification/top`, {
+        // Fetch top certifications
+        const certRes = await fetch(`/api/certification/top`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
           },
-        })
+        });
+        if (!certRes.ok) {
+          const error = await certRes.json();
+          throw new Error(error.msg);
+        }
+        const certData = await certRes.json();
+        setTopCertifications(certData);
 
-        if(!res.ok) {
-          const error = await res.json()
-          return setErrors({
-            ...errors,
-            fetchError: true,
-            fetchErrorMsg: error.msg,
-          })
-        } 
-        
-        setTopCertifications(await res.json());
-
-      } catch(error){
-        console.log(error.message)
-      }
-    }
-
-    const handleCertTop = async (event) => {
-      certifications.datasets.label = "Count"
-      
-      event.map((element) => {
-        certifications.labels.push(element._id)
-        certifications.datasets.data.push(element.count)
-      })
-    }
-
-    topCertFetch();
-    handleCertTop(topCertifications);
-  }, [certifications])
-
-  useEffect(() => {
-    const topEmpFetch = async () => {
-      try {
-        const res = await fetch(`/api/employee/top`, {
+        // Fetch top employees
+        const empRes = await fetch(`/api/employee/top`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
           },
-        })
-  
-        if(!res.ok) {
-          const error = await res.json()
-          return setErrors({
-            ...errors,
-            fetchError: true,
-            fetchErrorMsg: error.msg,
-          })
-        } 
-        
-        setTopEmployees(await res.json());
-  
-      } catch(error){
-        console.log(error.message)
+        });
+        if (!empRes.ok) {
+          const error = await empRes.json();
+          throw new Error(error.msg);
+        }
+        const empData = await empRes.json();
+        setTopEmployees(empData);
+      } catch (error) {
+        console.log(error.message);
+        // Handle the error, e.g., show an error message
       }
-    }
+    };
 
-    const handleEmpTop = async (event) => {
-      employees.datasets.label = "Certifications"
+    fetchData();
+  }, []);
+
+  const createCertificationsArray = (data) => {
+    const certifications = {
+      labels: [],
+      datasets: {
+        label: "Empleados",
+        data: []
+      }
+    };
+  
+    data.forEach((element) => {
+      let shortenedLabel = element._id.slice(0, 10);
       
-      event.map((element) => {
-        employees.labels.push(element.uid)
-        employees.datasets.data.push(element.count)
-      })
-    }
-    topEmpFetch();
-    handleEmpTop(topEmployees);
-  }, [employees])
+      if (element._id.length > 10) {
+        shortenedLabel += "...";
+      }
+  
+      certifications.labels.push(shortenedLabel);
+      certifications.datasets.data.push(element.count);
+    });
+  
+    return certifications;
+  };
+
+  const createEmployeesArray = (data) => {
+    const employees = {
+      labels: [],
+      datasets: {
+        label: "Certificaciones",
+        data: []
+      }
+    };
+
+    data.forEach((element) => {
+      employees.labels.push(element.uid);
+      employees.datasets.data.push(element.count);
+    });
+
+    return employees;
+  };
+
+  const certifications = createCertificationsArray(topCertifications);
+  const employees = createEmployeesArray(topEmployees);
+
+  console.log(certifications);
+  console.log(employees);
+
 
   return (
     <DashboardLayout>
