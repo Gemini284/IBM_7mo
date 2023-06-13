@@ -15,6 +15,7 @@ import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatist
 import GppGoodOutlinedIcon from '@mui/icons-material/GppGoodOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import EmployeeTableSearch from "./layouts/components/employeeTableSearch/index.js";
+import Saly from './assets/Saly-10.png';
 
 const suffix = (
   <AudioOutlined
@@ -149,17 +150,16 @@ export default function Search(){
             </MDBox>
             </>
         : <>
-            <MDBox py={1}>
-                <Grid container spacing={3} >
-                <Grid item xs={12} md={8}>
-                    <MDBox mb={1.5}>
-                        <Typography component="h1" variant="h8">
-                            ¡Inicia tu búsqueda!
-                        </Typography>
-                    </MDBox>
+                <Grid container spacing={3} justifyContent="flex-start" alignItems="center" direction="column">
+                <Grid item xs >
+                    <MDBox component="img" src={Saly} alt="Search Icon"/>
                 </Grid>
+                <Grid item xs >
+                    <Typography component="h1" variant="h8">
+                        ¡Inicia tu Búsqueda!
+                    </Typography>
                 </Grid>
-            </MDBox></>}
+                </Grid></>}
         </DashboardLayout>
     );
 }
