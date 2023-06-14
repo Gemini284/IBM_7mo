@@ -39,7 +39,11 @@ import MDButton from "components/MDButton";
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 
 // Images
+<<<<<<< HEAD
 import bgImage from "assets/images/ibm-cover.png";
+=======
+import bgImage from "assets/images/IBM_Login.jpg";
+>>>>>>> e7dfb3033a966fc995ba06c838a23c21cd608ed9
 
 function Login() {
   const [rememberMe, setRememberMe] = useState(false);
