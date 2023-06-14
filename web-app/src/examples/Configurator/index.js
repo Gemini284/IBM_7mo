@@ -101,14 +101,14 @@ function Configurator() {
     borders: { borderWidth },
   }) => ({
     height: pxToRem(39),
-    background: darkMode ? background.sidenav : white.main,
-    color: darkMode ? white.main : dark.main,
-    border: `${borderWidth[1]} solid ${darkMode ? white.main : dark.main}`,
+    background: background.sidenav,
+    color: white.main,
+    border: `${borderWidth[1]} solid ${white.main}`,
 
     "&:hover, &:focus, &:focus:not(:hover)": {
-      background: darkMode ? background.sidenav : white.main,
-      color: darkMode ? white.main : dark.main,
-      border: `${borderWidth[1]} solid ${darkMode ? white.main : dark.main}`,
+      background: background.sidenav,
+      color: white.main,
+      border: `${borderWidth[1]} solid ${white.main}`,
     },
   });
 
@@ -118,12 +118,12 @@ function Configurator() {
     palette: { white, gradients, background },
   }) => ({
     height: pxToRem(39),
-    background: darkMode ? white.main : linearGradient(gradients.dark.main, gradients.dark.state),
-    color: darkMode ? background.sidenav : white.main,
+    background:  white.main,
+    color: background.sidenav,
 
     "&:hover, &:focus, &:focus:not(:hover)": {
-      background: darkMode ? white.main : linearGradient(gradients.dark.main, gradients.dark.state),
-      color: darkMode ? background.sidenav : white.main,
+      background: white.main,
+      color: background.sidenav,
     },
   });
 
@@ -147,7 +147,7 @@ function Configurator() {
         <Icon
           sx={({ typography: { size }, palette: { dark, white } }) => ({
             fontSize: `${size.lg} !important`,
-            color: darkMode ? white.main : dark.main,
+            color: white.main,
             stroke: "currentColor",
             strokeWidth: "2px",
             cursor: "pointer",
@@ -177,11 +177,11 @@ function Configurator() {
                   width: "24px",
                   height: "24px",
                   padding: 0,
-                  border: `${borderWidth[1]} solid ${darkMode ? background.sidenav : white.main}`,
+                  border: `${borderWidth[1]} solid ${background.sidenav}`,
                   borderColor: () => {
                     let borderColorValue = sidenavColor === color && dark.main;
 
-                    if (darkMode && sidenavColor === color) {
+                    if (darkMode || sidenavColor === color) {
                       borderColorValue = white.main;
                     }
 
@@ -199,7 +199,7 @@ function Configurator() {
                   },
 
                   "&:hover, &:focus, &:active": {
-                    borderColor: darkMode ? white.main : dark.main,
+                    borderColor: white.main,
                   },
                 })}
                 onClick={() => setSidenavColor(dispatch, color)}
