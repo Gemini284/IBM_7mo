@@ -7,17 +7,14 @@ export default function EmployeeTableSearch(props) {
         {
           title: 'UID',
           dataIndex: 'uid',
-          render: (text) => <a>{text}</a>,
         },
         {
           title: 'Departamento',
           dataIndex: 'organization',
-          render: (text) => <a>{text}</a>,
         },
         {
           title: 'Ubicación',
           dataIndex: 'work_location',
-          render: (text) => <a>{text}</a>,
         },
         {
           title: 'Certificaciones',
