@@ -10,13 +10,7 @@ Para ejecutar:
 npm start
 ```
 ## Web-app
-#### Pendientes:
-- En layout de Search, mover la linea y nota del porcentaje hacia abajo
-- Poner renders condicionales de search dependiendo de resultados (certificados o empleado)
-- agregar filtros a los headers de la tabla en search
-- normalizar estilos/irlos haciendo parecidos al figma
-- editar inputs de registro segun tipo de datos (select, multiline, etc)
-- quitar clutter
+-
 ## Server
 - Agregar en la carpeta de server un archivo **.env** con lo siguiente: (reemplazar lo que está entre <>)
 ```
