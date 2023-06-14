@@ -37,7 +37,8 @@ import MDInput from "components/MDInput";
 import Breadcrumbs from "examples/Breadcrumbs";
 import NotificationItem from "examples/Items/NotificationItem";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { InputAdornment} from "@mui/material";
+import { Box, InputAdornment} from "@mui/material";
+import {Grid} from "@mui/material";
 
 // Custom styles for DashboardNavbar
 import {
@@ -147,7 +148,10 @@ function DashboardNavbar({ absolute, light, isMini}) {
     <AppBar
       position={absolute ? "absolute" : navbarType}
       color="inherit"
-      sx={(theme) => navbar(theme, { transparentNavbar, absolute, light, darkMode })}
+      sx={[
+        {zIndex: 5},
+        (theme) => navbar(theme, { transparentNavbar, absolute, light, darkMode })
+      ]}
     >
       <Toolbar sx={(theme) => navbarContainer(theme)}>
         <MDBox color="inherit" mb={{ xs: 1, md: 0 }} sx={(theme) => navbarRow(theme, { isMini })}>

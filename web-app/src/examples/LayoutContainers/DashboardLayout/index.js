@@ -25,23 +25,25 @@ import PropTypes from "prop-types";
 import MDBox from "components/MDBox";
 
 // Material Dashboard 2 React context
-import { useMaterialUIController, setLayout } from "context";
+import { useMaterialUIController, setLayout, navbar } from "context";
+import { setFixedNavbar } from "context";
 
 function DashboardLayout({ children }) {
   const [controller, dispatch] = useMaterialUIController();
-  const { miniSidenav } = controller;
+  const { miniSidenav, fixedNavbar } = controller;
   const { pathname } = useLocation();
 
   useEffect(() => {
     setLayout(dispatch, "dashboard");
   }, [pathname]);
 
+  console.log(fixedNavbar);
+
   return (
     <MDBox
       sx={({ breakpoints, transitions, functions: { pxToRem } }) => ({
         p: 3,
         position: "relative",
-
         [breakpoints.up("xl")]: {
           marginLeft: miniSidenav ? pxToRem(120) : pxToRem(274),
           transition: transitions.create(["margin-left", "margin-right"], {

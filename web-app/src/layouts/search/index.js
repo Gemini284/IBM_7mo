@@ -29,7 +29,9 @@ const suffix = (
 export default function Search(){
     const location = useLocation();
     const param = new URLSearchParams(location.search);
-    const search = param.get('type');
+    const selectedSearch = param.get('type');
+    const search = selectedSearch;
+
     const [data, setData] = useState([]);
     const [errors, setErrors] = useState({
         uid: false,
@@ -45,15 +47,11 @@ export default function Search(){
         count: "",
     });
 
-    const handleChange = ({fieldName}) => (event) => {
-        setValues({...values, [{fieldName}]: event.target.value})
-    }
-
     useEffect(() => {
         const handleSearchSubmit = async () => {
     
             try {
-              const query = encodeURIComponent(search);
+              const query = encodeURIComponent(selectedSearch);
               const res = await fetch(`/api/employee/search?type=${query}`, {
                 method: 'GET',
                 headers: {
@@ -70,7 +68,8 @@ export default function Search(){
                 })
               } 
               
-              setData(await res.json());
+              const json = await res.json()
+              setData(json);
         
             } catch(error){
               console.log(error.message)
@@ -78,7 +77,7 @@ export default function Search(){
         }
         handleSearchSubmit();
 
-    }, [search]);
+    }, [selectedSearch]);
 
     const getSummary = (event) =>
         event.map((element) => {
@@ -111,8 +110,8 @@ export default function Search(){
                 </Grid>
                 <Grid item>
                     { searchType ?
-                        <> {getSummary(data)} </>:
-                        <ComplexStatisticsCard
+                        <> {getSummary(data)} </> :
+                            <ComplexStatisticsCard
                             icon={<PersonOutlineOutlinedIcon/>}
                             title="Empleados Certificados"
                             percentage={{
