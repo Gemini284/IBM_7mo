@@ -1,0 +1,25 @@
+{
+    "version": 2,
+    "name": "skillpath",
+    "builds": [
+       { "src": "app.js", "use": "@vercel/node" }
+    ],
+    "routes": [
+       { "src": "/(.*)", "dest": "/app.js" }
+    ],
+    "crons": [{
+        "path": "/api/user",
+        "schedule": "0 10 * * *"
+      },
+      {
+        "path": "/api/employee",
+        "schedule": "0 10 * * *"
+      },      
+      {
+        "path": "/api/certification",
+        "schedule": "0 10 * * *"
+      }
+    
+    ]
+    
+ }
