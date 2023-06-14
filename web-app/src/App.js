@@ -124,8 +124,9 @@ export default function App() {
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
       {layout === "dashboard" && (
+        <>        
         <DashboardLayout>
-          <DashboardNavbar/>
+          <DashboardNavbar />
           <Sidenav
             color={sidenavColor}
             brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
@@ -135,7 +136,7 @@ export default function App() {
             onMouseLeave={handleOnMouseLeave}
           />
           <Configurator />
-        </DashboardLayout>
+        </DashboardLayout></>
       )}
       {layout === "vr" && <Configurator />}
       <Routes>
