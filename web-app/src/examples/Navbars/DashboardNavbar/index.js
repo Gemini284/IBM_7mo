@@ -163,8 +163,16 @@ function DashboardNavbar({ absolute, light, isMini}) {
               <MDInput
                 label="Busca un empleado o certificación"
                 InputProps={
-                  {startAdornment: <InputAdornment position="end">
-                    {<SearchOutlinedIcon/>}
+                  {startAdornment: <InputAdornment position="start">
+                    {<IconButton
+                        size="small"
+                        disableRipple
+                        color={light ? "white" : "inherit"}
+                        sx={navbarIconButton}
+                        onClick={handleSearchSubmit}
+                      >
+                        <Icon sx={[iconsStyle, {size: "small"}]}>search</Icon>
+                      </IconButton>}
                     </InputAdornment>}
                   }
                 value={searchValue}

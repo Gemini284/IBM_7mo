@@ -35,6 +35,85 @@ router.get("/top", async(req, res) => {
         res.status(500).json({message: error.message});
     }
 });
+
+//count total
+router.get("/count", async (req, res) => {
+    try{
+        let result = await Employee.countDocuments();
+        res.status(200).json(result);
+    }
+    catch(error){
+        res.status(500).json({message: error.message});
+    }
+})
+
+// get top 5 with most certifications
+router.get("/mean", async(req, res) => {
+    let query = [
+            {
+              $project: {
+                numberOfCertifications: { $size: "$employee_certifications" }
+              }
+            },
+            {
+              $group: {
+                _id: "$numberOfCertifications",
+                count: { $sum: 1 }
+              }
+            },
+            {
+              $sort: {
+                "_id": 1
+              }
+            },
+            {
+              $project: {
+                _id: 0,
+                numberOfCertifications: "$_id",
+                count: 1
+              }
+            }
+           
+    ]
+    try{
+        let result = await Employee.aggregate(query);
+        res.status(200).json(result);
+    }
+    catch(error){
+        res.status(500).json({message: error.message});
+    }
+});
+
+
+// get top 5 with most certifications
+router.get("/mean/total", async(req, res) => {
+    let query = [
+        {
+            $project: {
+              numberOfCertifications: { $size: "$employee_certifications" }
+            }
+        },
+        {
+            $group: {
+              _id: null,
+              totalCertifications: { $sum: "$numberOfCertifications" },
+              totalEmployees: { $sum: 1 }
+            }
+        },
+        {
+            $project: {
+              meanCertifications: { $divide: ["$totalCertifications", "$totalEmployees"] }
+            }
+        }
+    ]
+    try{
+        let result = await Employee.aggregate(query);
+        res.status(200).json(result);
+    }
+    catch(error){
+        res.status(500).json({message: error.message});
+    }
+});
  
 // get by uid
 router.get("/search/:uid", async (req, res) => {

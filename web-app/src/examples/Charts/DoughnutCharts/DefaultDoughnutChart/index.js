@@ -104,6 +104,8 @@ DefaultDoughnutChart.propTypes = {
       "error",
       "light",
       "dark",
+      "purple",
+      "orange"
     ]),
     component: PropTypes.node,
   }),

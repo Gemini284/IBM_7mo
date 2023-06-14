@@ -157,7 +157,7 @@ export default function TableSearch(props) {
               color: darkMode ? '#D2D4D9' : '#344767',
             },
           },
-          children: <div>{text}</div>,
+          children: <div>{text.split('T')[0]}</div>,
         }
       },
     },

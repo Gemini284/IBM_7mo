@@ -46,27 +46,13 @@ function ComplexStatisticsCard({ color, title, count, percentage, icon }) {
             {icon}
           </Icon>
         </MDBox>
-        <MDBox textAlign="right" alignItems="center" pl={2}>
+        <MDBox textAlign="right" alignItems="center" pl={2} pb={2}>
           <MDTypography variant="button" fontWeight="light" color="text">
             {title}
           </MDTypography>
-          <MDTypography variant="h4">{count}</MDTypography>
+          <MDTypography variant="h3">{count}</MDTypography>
         </MDBox>
       </MDBox>
-      <Divider style={{width:'100%'}}/>
-      <MDBox pb={2} pl={2} display="flex" alignItems="center">
-        <MDTypography component="p" variant="button" color="text">
-          <MDTypography
-            component="span"
-            variant="button"
-            fontWeight="bold"
-            color={percentage.color}
-          >
-            {percentage.amount}
-          </MDTypography>
-          &nbsp;{percentage.label}
-        </MDTypography>
-        </MDBox>
     </Card>
   );
 }

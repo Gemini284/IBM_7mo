@@ -15,9 +15,6 @@ export default function SummarySearch(props){
           icon={<GppGoodOutlinedIcon/>}
           title="Certificaciones Actuales"
           percentage={{
-            color: "success",
-            amount: "55%",
-            label: "de las certificaciones totales",
           }}
           count={props.count}
         />
@@ -29,7 +26,7 @@ export default function SummarySearch(props){
           value={props.department}
         />
       </Grid>
-      <Grid item>
+      <Grid item xs>
         <SummaryResultCard
           icon={<TravelExploreOutlinedIcon/>}
           title="Ubicación"

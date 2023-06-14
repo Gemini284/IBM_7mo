@@ -19,7 +19,7 @@ function SummaryResultCard({ color, title, value, icon }) {
           </MDTypography>
         </MDBox>
       </MDBox>
-      <MDBox pt={1} px={2} display="flex" justifyContent="space-between" height="100%">
+      <MDBox pt={1} px={2} display="flex" justifyContent="space-between" pb={2}>
         <MDBox alignItems="center">
           <MDTypography variant="h4">
               {value}

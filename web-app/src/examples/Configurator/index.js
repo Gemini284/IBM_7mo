@@ -138,8 +138,8 @@ function Configurator() {
         px={3}
       >
         <MDBox>
-          <MDTypography variant="h5">Configuración: </MDTypography>
-          <MDTypography variant="body2" color="text">
+          <MDTypography variant="h5" color="white">Configuración: </MDTypography>
+          <MDTypography variant="body2" color="white">
             ¡Personaliza la aplicación a tu gusto! 
           </MDTypography>
         </MDBox>
@@ -159,11 +159,11 @@ function Configurator() {
         </Icon>
       </MDBox>
 
-      <Divider />
+      <Divider/>
 
       <MDBox pt={0.5} pb={3} px={3}>
         <MDBox>
-          <MDTypography variant="h6">Colores del menú</MDTypography>
+          <MDTypography variant="h6" color="white">Colores del menú</MDTypography>
 
           <MDBox mb={0.5}>
             {sidenavColors.map((color) => (
@@ -178,15 +178,7 @@ function Configurator() {
                   height: "24px",
                   padding: 0,
                   border: `${borderWidth[1]} solid ${background.sidenav}`,
-                  borderColor: () => {
-                    let borderColorValue = sidenavColor === color && dark.main;
-
-                    if (darkMode || sidenavColor === color) {
-                      borderColorValue = white.main;
-                    }
-
-                    return borderColorValue;
-                  },
+                  borderColor: white.main,
                   transition: transitions.create("border-color", {
                     easing: transitions.easing.sharp,
                     duration: transitions.duration.shorter,
@@ -209,8 +201,8 @@ function Configurator() {
         </MDBox>
 
         <MDBox mt={3} lineHeight={1}>
-          <MDTypography variant="h6">Tipo de menú</MDTypography>
-          <MDTypography variant="button" color="text">
+          <MDTypography variant="h6" color="white">Tipo de menú</MDTypography>
+          <MDTypography variant="button" color="white">
             Escoge entre los diferentes tipos de menú.
           </MDTypography>
 
@@ -267,20 +259,10 @@ function Configurator() {
             </MDButton>
           </MDBox>
         </MDBox>
-        <MDBox
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          mt={3}
-          lineHeight={1}
-        >
-          <MDTypography variant="h6">Anclar búsqueda</MDTypography>
-
-          <Switch checked={fixedNavbar} onChange={handleFixedNavbar} />
-        </MDBox>
+        
         <Divider />
         <MDBox display="flex" justifyContent="space-between" alignItems="center" lineHeight={1}>
-          <MDTypography variant="h6">Light / Dark Theme</MDTypography>
+          <MDTypography variant="h6" color="white">Light / Dark Theme</MDTypography>
 
           <Switch checked={darkMode} onChange={handleDarkMode} />
         </MDBox>

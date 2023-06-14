@@ -38,6 +38,53 @@ router.get("/top", async(req, res) => {
     }
 });
 
+// get frequency
+router.get("/pie", async(req, res) => {
+    let query = [
+            {
+              $group: {
+                _id: "$name",
+                count: { $sum: 1 }
+              }
+            },
+            {
+              $match: {
+                count: { $gte: 50 }
+              }
+            },
+            {
+              $project: {
+                _id: 0,
+                name: "$_id",
+                count: 1
+              }
+            },
+            {
+              $sort: {
+                count: -1
+              }
+            }         
+    ]
+    try{
+        let result = await Certification.aggregate(query);
+        res.status(200).json(result);
+    }
+    catch(error){
+        res.status(500).json({message: error.message});
+    }
+});
+
+//count total
+router.get("/count", async (req, res) => {
+    try{
+        let result = await Certification.countDocuments();
+        res.status(200).json(result);
+    }
+    catch(error){
+        res.status(500).json({message: error.message});
+    }
+})
+
 // get by uid
 router.get("/:uid", async (req, res) => {
     let query = {uid: req.params.uid};

@@ -20,11 +20,11 @@ function BasicLayout({ image, children }) {
         width="100%"
         minHeight="100vh"
         sx={{
-          backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
+          backgroundImage: ({ functions: { linearGradient, rgba, tran }, palette: { gradients }, deg }) =>
             image &&
             `${linearGradient(
-              rgba(gradients.info.main, 0),
-              rgba(gradients.info.state, 0)
+              rgba(gradients.cover.main, 0.6),
+              rgba(gradients.cover.state, 0.3)
             )}, url(${image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -32,7 +32,7 @@ function BasicLayout({ image, children }) {
         }}
       />
       <MDBox px={1} width="100%" height="100vh" mx="auto" direction="row">
-        <Grid container spacing={1} justifyContent="right" alignItems="center" height="100%">
+        <Grid container spacing={1} justifyContent="left" alignItems="center" height="100%">
           <Grid item xs={11} sm={9} lg={4} xl={3} mx={25}>
             {children}
           </Grid>

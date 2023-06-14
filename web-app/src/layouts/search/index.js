@@ -93,59 +93,70 @@ export default function Search(){
 
     return (
         <DashboardLayout>
-            {search ?
-            <>
-            <Grid container spacing={3} justifyContent="flex-start">
-                <Grid item xs>
-                    <Typography component="h1" variant="h8">
-                        Resultados de Búsqueda: {search}
-                    </Typography>
-                </Grid>
-            </Grid>
-            <Grid container spacing={3} justifyContent="space-around" alignItems="flex-start" direction="column">
-                <Grid item xs>
-                    <Typography component="h2" variant="h6">
-                        Resumen
-                    </Typography>
-                </Grid>
-                <Grid item>
-                    { searchType ?
-                        <> {getSummary(data)} </> :
-                            <ComplexStatisticsCard
-                            icon={<PersonOutlineOutlinedIcon/>}
-                            title="Empleados Certificados"
-                            percentage={{
-                                color: "success",
-                                    amount: "55%",
-                                    label: "de los empleados totales",
-                                }}
-                            count={data.length}/>
-                    }
-                </Grid>
-                <Grid item xs>
-                    <Typography component="h2" variant="h6">
-                        Lista
-                    </Typography>
-                </Grid>
-                <Grid item>
-                    {searchType ?
-                        <> {getTable(data)} </> :
-                        <EmployeeTableSearch data={data}/>
-                    }
-                </Grid>
-            </Grid>
-            </>
-        : <>
-            <Grid container spacing={3} justifyContent="flex-start" alignItems="center" direction="column">
-                <Grid item xs >
-                    <MDBox component="img" src={Saly} alt="Search Icon"/>
-                </Grid>
-            <Grid item xs >
-                <Typography component="h1" variant="h8">
-                    ¡Inicia tu Búsqueda!
-                </Typography>
-            </Grid>
-            </Grid></>}
+            {search ? <>
+                {search === "undefined" || data.length === 0? <>
+                    <Grid container spacing={3} justifyContent="flex-start">
+                        <Grid item xs>
+                                <Typography component="h1" variant="h8">                            
+                                No existen resultados para esa búsqueda
+                                </Typography>
+                        </Grid>
+                    </Grid>
+                </> : <>
+                    <Grid container spacing={3} justifyContent="flex-start">
+                        <Grid item xs>
+                            <Typography component="h1" variant="h8">                            
+                                Resultados de Búsqueda: {search}
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={3} justifyContent="space-around" alignItems="flex-start" direction="column">
+                        <Grid item xs>
+                            <Typography component="h2" variant="h6">
+                                Resumen
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            { searchType ? <>
+                                {getSummary(data)}
+                                </> : <>
+                                <ComplexStatisticsCard
+                                    icon={<PersonOutlineOutlinedIcon/>}
+                                    title="Empleados Certificados"
+                                    percentage={{
+                                        color: "success",
+                                            amount: "55%",
+                                            label: "de los empleados totales",
+                                        }}
+                                    count={data.length}/>
+                                </>
+                            }
+                        </Grid>
+                        <Grid item xs>
+                            <Typography component="h2" variant="h6">
+                                Lista
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            {searchType ?
+                                <> {getTable(data)} </> :
+                                <EmployeeTableSearch data={data}/>
+                            }
+                        </Grid>
+                    </Grid>
+                    </>}
+                </> : <>
+                    <Grid container spacing={3} justifyContent="flex-start" alignItems="center" direction="column">
+                        <Grid item xs >
+                            <MDBox component="img" src={Saly} alt="Search Icon"/>
+                        </Grid>
+                    <Grid item xs >
+                        <Typography component="h1" variant="h8">
+                            ¡Inicia tu Búsqueda!
+                        </Typography>
+                    </Grid>
+                    </Grid>
+                </>}
         </DashboardLayout>
     );
 }

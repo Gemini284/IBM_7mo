@@ -12,7 +12,6 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-
 import { useEffect, useState } from "react";
 
 // react-router-dom components
@@ -39,15 +38,17 @@ import MDButton from "components/MDButton";
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 
 // Images
-import bgImage from "assets/images/ibm-cover.png";
+import bgImage from "assets/images/ibm-building.jpg";
+import MDAlert from "components/MDAlert";
+import { Icon } from "@mui/material";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 function Login() {
   const [rememberMe, setRememberMe] = useState(false);
-  const [isLogged, setIsLogged] = useState([]);
-  
   const navigate = useNavigate();
+  const [result, setResult] = useState();
 
-  const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
   // api call
   const [values, setValues] = useState({
@@ -66,10 +67,6 @@ function Login() {
   const handleChange = (fieldName) => (event) => {
     setValues({...values, [fieldName]: event.target.value})
   }
-
-  useEffect(() => {
-    localStorage.setItem('isLogged', JSON.stringify(isLogged));
-  }, [isLogged]);
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -94,6 +91,7 @@ function Login() {
           fetchErrorMsg: error.msg,
         })
       } else {
+        alert("¡Login Exitoso!");
         navigate("/dashboard");
       }
 
@@ -102,8 +100,8 @@ function Login() {
         password: "",
         showPassword: false,
       })
-      alert('Login exitoso');
     } catch (error) {
+      alert("Error con el Login");
       console.error(error.message)
     }
   }
@@ -133,18 +131,6 @@ function Login() {
             </MDBox>
             <MDBox mb={2}>
               <MDInput type="password" label="Password" value={values.password} onChange={handleChange('password')} fullWidth />
-            </MDBox>
-            <MDBox display="flex" alignItems="center" ml={-1}>
-              <Switch checked={rememberMe} onChange={handleSetRememberMe} />
-              <MDTypography
-                variant="button"
-                fontWeight="regular"
-                color="text"
-                onClick={handleSetRememberMe}
-                sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
-              >
-                &nbsp;&nbsp;Remember me
-              </MDTypography>
             </MDBox>
             <MDBox mt={4} mb={1}>
               <MDButton variant="gradient" color="info" type="submit" disabled={errors.email || errors.password} fullWidth>

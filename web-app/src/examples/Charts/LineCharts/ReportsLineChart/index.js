@@ -88,7 +88,7 @@ function ReportsLineChart({ color, title, description, date, chart }) {
           <Divider />
           <MDBox display="flex" alignItems="center">
             <MDTypography variant="button" color="text" lineHeight={1} sx={{ mt: 0.15, mr: 0.5 }}>
-              <Icon>schedule</Icon>
+              <Icon>assignment</Icon>
             </MDTypography>
             <MDTypography variant="button" color="text" fontWeight="light">
               {date}

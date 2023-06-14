@@ -97,6 +97,16 @@ const colors = {
     800: "#343a40",
     900: "#212529",
   },
+  
+  orange: {
+    main: "#ff9800",
+    focus: "#ff9800"
+  },
+
+  purple: {
+    main: "#9c27b0",
+    focus: "#9c27b0"
+  },
 
   gradients: {
     primary: {

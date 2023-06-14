@@ -29,35 +29,28 @@ import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatist
 // Data
 import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
+import DefaultDoughnutChart from "examples/Charts/DoughnutCharts/DefaultDoughnutChart";
 
 // Dashboard components
 import Projects from "layouts/dashboard/components/Projects";
 //import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
+import { colors } from "@mui/material";
 
 function Dashboard() {
-  const reportDataExample = {
-    labels: ["M", "T", "W", "T", "F", "S", "S"],
-    datasets: { label: "Sales", data: [50, 20, 10, 22, 50, 10, 40] },
-  }
   const { sales, tasks } = reportsLineChartData;
     
   const [errors, setErrors] = useState({
     fetchError: false,
     fetchErrorMsg: "",
   })
-  const [certValues, setCertValues] = useState({
-      _id: "",
-      count:""
-  });
-  const [empValues, setEmpValues] = useState({
-    uid: "",
-    organization: "",
-    work_location: "",
-    count: "",
-  });
 
   const [topCertifications, setTopCertifications] = useState([]);
   const [topEmployees, setTopEmployees] = useState([]);
+  const [frequecyCerts, setFrequencyCerts] = useState([]);
+  const [totalCertifications, setTotalCertifications] = useState([]);
+  const [totalEmployees, setTotalEmployees] = useState([]);
+  const [meanCertifications, setMeanCertifications] = useState([]);
+  const [meanResult, setMeanResult] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -89,10 +82,80 @@ function Dashboard() {
         }
         const empData = await empRes.json();
         setTopEmployees(empData);
+
+        //Fetch certification frequency
+        const freqRes = await fetch(`/api/certification/pie`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        });
+        if (!freqRes.ok) {
+          const error = await freqRes.json();
+          throw new Error(error.msg);
+        }
+        const freqData = await freqRes.json();
+        setFrequencyCerts(freqData);
+
       } catch (error) {
         console.log(error.message);
-        // Handle the error, e.g., show an error message
       }
+
+      // Fetch total certificaciones
+      const certTotal = await fetch(`/api/certification/count`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+      if (!certTotal.ok) {
+        const error = await certTotal.json();
+        throw new Error(error.msg);
+      }
+      const certTotalData = await certTotal.json();
+      setTotalCertifications(certTotalData);
+
+      // Fetch total empleados
+      const empTotal = await fetch(`/api/employee/count`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+      if (!empTotal.ok) {
+        const error = await empTotal.json();
+        throw new Error(error.msg);
+      }
+      const empTotalData = await empTotal.json();
+      setTotalEmployees(empTotalData);
+
+      // Fetch promedio de certificaciones
+      const meanData = await fetch(`/api/employee/mean`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+      if (!meanData.ok) {
+        const error = await meanData.json();
+        throw new Error(error.msg);
+      }
+      const meanRes = await meanData.json();
+      setMeanCertifications(meanRes);
+      
+      //Promedio de certificaciones por empleado
+      const meanTotal = await fetch(`/api/employee/mean/total`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+      if (!meanTotal.ok) {
+        const error = await meanTotal.json();
+        throw new Error(error.msg);
+      }
+      const meanTotalRes = await meanTotal.json();
+      setMeanResult(meanTotalRes[0].meanCertifications.toFixed(0).toString());
     };
 
     fetchData();
@@ -138,57 +201,58 @@ function Dashboard() {
     return employees;
   };
 
+  const createFrequencyArray = (data) => {
+    const frequency = {
+      labels: [],
+      datasets: {
+        label: "Total",
+        data: [],
+        backgroundColors: ["primary", "warning", "dark", "info"]
+      }
+    };
+
+    data.forEach((element) => {
+      frequency.labels.push(element.name);
+      frequency.datasets.data.push(element.count);
+    });
+
+    return frequency;
+  };
+
+  const createMeanArray = (data) => {
+    const mean = {
+      labels: [],
+      datasets: {
+        label: "Empleados",
+        data: [],
+      }
+    };
+
+    data.forEach((element) => {
+      mean.labels.push(element.numberOfCertifications);
+      mean.datasets.data.push(element.count);
+    });
+
+    return mean;
+  };
+
   const certifications = createCertificationsArray(topCertifications);
   const employees = createEmployeesArray(topEmployees);
-
-  console.log(certifications);
-  console.log(employees);
-
+  const frequency = createFrequencyArray(frequecyCerts);
+  const mean = createMeanArray(meanCertifications);
 
   return (
     <DashboardLayout>
       <MDBox py={3}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                color="dark"
-                icon="weekend"
-                title="Bookings"
-                count={281}
-                percentage={{
-                  color: "success",
-                  amount: "+55%",
-                  label: "than lask week",
-                }}
-              />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                icon="leaderboard"
-                title="Today's Users"
-                count="2,300"
-                percentage={{
-                  color: "success",
-                  amount: "+3%",
-                  label: "than last month",
-                }}
-              />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
+        <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="success"
-                icon="store"
-                title="Revenue"
-                count="34k"
+                icon="shield"
+                title="Certificaciones Totales"
+                count={totalCertifications}
                 percentage={{
-                  color: "success",
-                  amount: "+1%",
-                  label: "than yesterday",
                 }}
               />
             </MDBox>
@@ -196,20 +260,17 @@ function Dashboard() {
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
-                color="primary"
-                icon="person_add"
-                title="Followers"
-                count="+91"
+                icon="person"
+                title="Total de Empleados"
+                count={totalEmployees}
                 percentage={{
-                  color: "success",
-                  amount: "",
-                  label: "Just updated",
                 }}
               />
             </MDBox>
           </Grid>
         </Grid>
-        <MDBox mt={4.5}>
+      </MDBox>
+      <MDBox mt={4.5}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
@@ -217,7 +278,7 @@ function Dashboard() {
                   color="primary"
                   title="Top 5 Empleados"
                   description="Los empleados con mayor número de certificaciones"
-                  date="campaign sent 2 days ago"
+                  date="Recién actualizado"
                   chart={employees}
                 />
               </MDBox>
@@ -228,50 +289,40 @@ function Dashboard() {
                   color="info"
                   title="Top 5 Certificaciones"
                   description="Las certificaciones más frecuentes entre los empleados"
-                  date="campaign sent 2 days ago"
+                  date="Recién actualizado"
                   chart={certifications}
                 />
               </MDBox>
             </Grid>
-            
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
                 <ReportsLineChart
                   color="success"
-                  title="daily sales"
+                  title="Certificaciones vs Empleados"
+                  description="La frecuencia de empleados según el número de certificaciones."
+                  date={`Promedio: ${meanResult} certificaciones por empleado`}
+                  chart={mean}
+                />
+              </MDBox>
+            </Grid>
+          </Grid>
+        </MDBox>
+      <MDBox py={3}>
+      <Grid item xs={12} md={6} lg={4}>
+              <MDBox mb={3}>
+                <DefaultDoughnutChart
+                  color="success"
+                  title="Frecuencia de Certificaciones"
                   description={
                     <>
-                      (<strong>+15%</strong>) increase in today sales.
+                      Todas las certificaciones obtenidas por <strong>+50</strong> empleados.
                     </>
                   }
                   date="updated 4 min ago"
-                  chart={sales}
+                  chart={frequency}
                 />
               </MDBox>
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <MDBox mb={3}>
-                <ReportsLineChart
-                  color="dark"
-                  title="completed tasks"
-                  description="Last Campaign Performance"
-                  date="just updated"
-                  chart={tasks}
-                />
-              </MDBox>
-            </Grid>
-          </Grid>
-        </MDBox>
-        <MDBox>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={8}>
-              <Projects />
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-
-            </Grid>
-          </Grid>
-        </MDBox>
       </MDBox>
     </DashboardLayout>
   );

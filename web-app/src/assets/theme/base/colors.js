@@ -97,6 +97,17 @@ const colors = {
     900: "#212529",
   },
 
+  orange: {
+    main: "#ff9800",
+    focus: "#ff9800"
+  },
+
+  purple: {
+    main: "#9c27b0",
+    focus: "#9c27b0"
+  },
+
+
   gradients: {
     primary: {
       main: "#EC407A",
@@ -137,6 +148,11 @@ const colors = {
       main: "#42424A",
       state: "#191919",
     },
+
+    cover: {
+      main: "#191714",
+      state: "#2234AE"
+    }
   },
 
   socialMediaColors: {
