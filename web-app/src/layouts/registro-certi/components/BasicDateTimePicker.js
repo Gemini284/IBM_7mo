@@ -1,12 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { TextField, InputAdornment, Typography } from '@mui/material';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import React, { useState } from 'react';
+import { TextField, InputAdornment } from '@mui/material';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { DateTimePicker, DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { Grid } from '@mui/material';
+import Icon from "@mui/material/Icon";
+import {useMaterialUIController} from "context";
 
 function BasicDateTimePicker({onDateChange}) {
   const [selectedDate, setSelectedDate] = useState(null);
+  const [controller, dispatch] = useMaterialUIController();
+  const { transparentNavbar, darkMode } = controller;
+
+  // Styles for icons
+  const iconsStyle = ({ palette: { dark, white, text }, functions: { rgba } }) => ({
+        color: () => {
+        let colorValue = darkMode ? white.main : dark.main;
+
+        if (transparentNavbar) {
+            colorValue = darkMode ? rgba(text.main, 0.6) : text.main;
+        }
+
+        return colorValue;
+        },
+    });
 
   const handleChange = (event) => {
     setSelectedDate(event);
@@ -28,7 +44,7 @@ function BasicDateTimePicker({onDateChange}) {
             {...params}
             InputProps={{
               startAdornment: <InputAdornment position="end">
-                <CalendarTodayIcon />
+                <Icon sx={[iconsStyle, {size: "medium"}]}>schedule</Icon>
               </InputAdornment>
             }}
             required

@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 import { useState, useEffect } from "react";
 
 // react-router components
-import { useLocation, Link, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
 
 
 // prop-types is a library for typechecking of props.
@@ -35,10 +35,7 @@ import MDInput from "components/MDInput";
 
 // Material Dashboard 2 React example components
 import Breadcrumbs from "examples/Breadcrumbs";
-import NotificationItem from "examples/Items/NotificationItem";
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { Box, InputAdornment} from "@mui/material";
-import {Grid} from "@mui/material";
+import {InputAdornment} from "@mui/material";
 
 // Custom styles for DashboardNavbar
 import {

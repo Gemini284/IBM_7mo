@@ -10,7 +10,28 @@ Para ejecutar:
 npm start
 ```
 ## Web-app
--
+Los archivos correspondientes fueron obtenidos de Material Dashboard 2 React:
+```
+material-dashboard-react
+    ├── src
+    │   ├── assets
+    │   ├── context
+    │   ├── examples
+```
+Copyright:
+```
+=========================================================
+* Material Dashboard 2 React - v2.2.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/material-dashboard-react
+* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+
+Coded by www.creative-tim.com
+
+ =========================================================
+```
+
 ## Server
 - Agregar en la carpeta de server un archivo **.env** con lo siguiente: (reemplazar lo que está entre <>)
 ```

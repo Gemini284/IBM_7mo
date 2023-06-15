@@ -1,5 +1,5 @@
 import MDBox from "components/MDBox";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 import GppGoodOutlinedIcon from '@mui/icons-material/GppGoodOutlined';
 import SummaryResultCard from "examples/Cards/SummaryCards/SummaryResultCard";

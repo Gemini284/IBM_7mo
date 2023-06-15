@@ -4,13 +4,9 @@ import BasicDateTimePicker from './components/BasicDateTimePicker';
 import { Grid } from '@mui/material';
 import MDBox from 'components/MDBox';
 import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
-import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
 import MDButton from 'components/MDButton';
 import FormInput from '../../components/FormInput';
 import { useState } from 'react';
-//import Certification from './components/certification-model';
-// const Certification = require('./components/certification-model');
-// const mongoose = require('mongoose');
 
 export default function RegistroCertificate() {
 
@@ -43,28 +39,6 @@ export default function RegistroCertificate() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
-    /*
-    // checar que no estén vacíos los campos
-    if (values.uid === '' || values.name === '' || values.description === '' || values.type === '' || values.issue_date === '') {
-      alert('Todos los campos son obligatorios');
-      return;
-    }
-  
-    // checar que el id cumpla con la siguiente regex ^[A-Z0-9]{10}IBM$
-    if (!/^[A-Z0-9]{10}IBM$/.test(values.uid)) {
-      alert('El id de empleado no es válido');
-      return;
-    }
-  
-    // checar que la fecha sea menor o igual a la fecha actual
-    const today = new Date();
-    const dateToCheck = new Date(values.issue_date);
-    if (dateToCheck > today) {
-      alert('La fecha no puede ser mayor a la fecha actual');
-      return;
-    }
-    */
   
     try {
       const res = await fetch('/api/certification/newCertification', {
@@ -148,7 +122,7 @@ export default function RegistroCertificate() {
               id="type"
               label="Ingrese el tipo de certificación"
               name="type"
-              icon="company"
+              icon="badge"
               value={values.type}
               onChange={handleChange('type')}
             />
@@ -158,6 +132,7 @@ export default function RegistroCertificate() {
               <MDButton
                 type="submit"
                 variant="contained"
+                color="primary"
                 sx={{ mt: 3, mb: 2 }}
                 onClick={handleSubmit}
                 disabled={errors.uid || errors.name || errors.issue_date || errors.type || errors.description}>
