@@ -10,7 +10,7 @@ const certificationRoutes = require('./routes/certification-router');
 
 //app
 const PORT = process.env.PORT || 5050;
-const uri = process.env.URI || "";
+const uri = process.env.MONGODB_URI || "";
 const db = process.env.DATABASE || "";
 const app = express();
 

@@ -1,27 +1,40 @@
-import {useState} from 'react';
-import { Typography, TextField, InputAdornment} from "@mui/material";
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import GppGoodOutlinedIcon from '@mui/icons-material/GppGoodOutlined';
-import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
-import CorporateFareOutlinedIcon from '@mui/icons-material/CorporateFareOutlined';
-import MDBox from 'components/MDBox';
+import {TextField, InputAdornment} from "@mui/material";
 import { Grid } from '@mui/material';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import Icon from "@mui/material/Icon";
+import {useMaterialUIController} from "context";
+
 
 function FormInput(props){
+    const [controller, dispatch] = useMaterialUIController();
+    const { transparentNavbar, darkMode } = controller;
+
+    // Styles for the navbar icons
+    const iconsStyle = ({ palette: { dark, white, text }, functions: { rgba } }) => ({
+        color: () => {
+        let colorValue = darkMode ? white.main : dark.main;
+
+        if (transparentNavbar) {
+            colorValue = darkMode ? rgba(text.main, 0.6) : text.main;
+        }
+
+        return colorValue;
+        },
+    });
 
     const getIconFromName = () => {
         switch (props.icon) {
             case 'person':
-                return <PersonOutlineIcon/>;
+                return <Icon sx={[iconsStyle, {size: "medium"}]}>person</Icon>;
             case 'certification':
-                return <GppGoodOutlinedIcon/>;
+                return <Icon sx={[iconsStyle, {size: "medium"}]}>shield</Icon>;;
             case 'description':
-                return <EditNoteOutlinedIcon/>;
+                return <Icon sx={[iconsStyle, {size: "medium"}]}>edit</Icon>;;
             case 'company':
-                return <CorporateFareOutlinedIcon/>;
+                return <Icon sx={[iconsStyle, {size: "medium"}]}>company</Icon>;;
             case 'search':
-                return <SearchOutlinedIcon/>;
+                return <Icon sx={[iconsStyle, {size: "medium"}]}>search</Icon>;;
+            case 'badge':
+                return <Icon sx={[iconsStyle, {size: "medium"}]}>badge</Icon>;;
         }
     }
 

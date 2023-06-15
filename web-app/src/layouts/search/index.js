@@ -1,30 +1,15 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import { Grid } from "@mui/material";
 import MDBox from "components/MDBox";
-import FormInput from "components/FormInput";
-import CustomizedSwitch from "components/CustomizedSwitch";
 import Typography from '@mui/material/Typography';
 import TableSearch from "./layouts/components/tableSearch/index.js";
 import SummarySearch from "./layouts/components/summarySearch/index.js";
-import { AudioOutlined } from '@ant-design/icons';
-import { Button, Input, Space } from 'antd';
 import { useLocation } from "react-router-dom";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard/index.js";
-import GppGoodOutlinedIcon from '@mui/icons-material/GppGoodOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import EmployeeTableSearch from "./layouts/components/employeeTableSearch/index.js";
 import Saly from './assets/Saly-10.png';
-
-const suffix = (
-  <AudioOutlined
-    style={{
-      fontSize: 16,
-      color: '#1677ff',
-    }}
-  />
-);
 
 export default function Search(){
     const location = useLocation();

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import DataTable from "examples/Tables/DataTable";
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table, Tag } from 'antd';
 import { useRef, useState } from 'react';

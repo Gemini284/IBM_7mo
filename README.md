@@ -10,13 +10,28 @@ Para ejecutar:
 npm start
 ```
 ## Web-app
-#### Pendientes:
-- En layout de Search, mover la linea y nota del porcentaje hacia abajo
-- Poner renders condicionales de search dependiendo de resultados (certificados o empleado)
-- agregar filtros a los headers de la tabla en search
-- normalizar estilos/irlos haciendo parecidos al figma
-- editar inputs de registro segun tipo de datos (select, multiline, etc)
-- quitar clutter
+Los archivos correspondientes fueron obtenidos de Material Dashboard 2 React:
+```
+material-dashboard-react
+    ├── src
+    │   ├── assets
+    │   ├── context
+    │   ├── examples
+```
+Copyright:
+```
+=========================================================
+* Material Dashboard 2 React - v2.2.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/material-dashboard-react
+* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+
+Coded by www.creative-tim.com
+
+ =========================================================
+```
+
 ## Server
 - Agregar en la carpeta de server un archivo **.env** con lo siguiente: (reemplazar lo que está entre <>)
 ```
