@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require("express");
 const mongoose = require('mongoose');
-const cors = require("cors");
+const helmet = require('helmet');
 
 //routes
 const authRoutes = require('./routes/auth-router');
@@ -15,9 +15,9 @@ const db = process.env.DATABASE || "";
 const app = express();
 
 //middlewares
-app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(helmet());
 
 // start the Express server and database
 mongoose.set('strictQuery', false);
