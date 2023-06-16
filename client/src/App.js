@@ -8,14 +8,14 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
 // Material Dashboard 2 React example components
-import Sidenav from "./examples/Sidenav";
-import Configurator from "./examples/Configurator";
+import Sidenav from "examples/Sidenav";
+import Configurator from "examples/Configurator";
 
 // Material Dashboard 2 React themes
-import theme from "./assets/theme";
+import theme from "assets/theme";
 
 // Material Dashboard 2 React Dark Mode themes
-import themeDark from "./assets/theme-dark";
+import themeDark from "assets/theme-dark";
 
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
@@ -26,8 +26,8 @@ import routes from "routes";
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
 
 // Images
-import brandWhite from "./assets/images/ibm-icons/logo_white.png";
-import brandDark from "./assets/images/ibm-icons/logo_blue.png";
+import brandWhite from "assets/images/ibm-icons/logo_white.png";
+import brandDark from "assets/images/ibm-icons/logo_blue.png";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
 export default function App() {

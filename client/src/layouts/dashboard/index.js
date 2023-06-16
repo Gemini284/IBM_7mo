@@ -15,11 +15,6 @@ import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatist
 import DefaultDoughnutChart from "examples/Charts/DoughnutCharts/DefaultDoughnutChart";
 
 function Dashboard() {
-    
-  const [errors, setErrors] = useState({
-    fetchError: false,
-    fetchErrorMsg: "",
-  })
 
   const [topCertifications, setTopCertifications] = useState([]);
   const [topEmployees, setTopEmployees] = useState([]);

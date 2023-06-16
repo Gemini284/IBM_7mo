@@ -11,7 +11,6 @@ const certificationRoutes = require('./routes/certification-router');
 const PORT = process.env.PORT || 5050;
 const uri = process.env.MONGODB_URI || "";
 const db = process.env.DATABASE || "";
-const host = process.env.HOST || '0.0.0.0';
 const app = express();
 
 //middlewares
@@ -32,7 +31,7 @@ mongoose.connect(uri, {
     console.log(error);
   })
 
-app.listen(PORT, host, () => {
+app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
 });
 

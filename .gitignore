@@ -26,3 +26,6 @@ package-lock.json
 yarn.lock
 
 commit.sh
+
+/server/config/*
+!/server/config/dev.env
