@@ -1,8 +1,8 @@
-ibm.skillpath.com:443 {
-  tls mfem.tg@gmail.com
+ibm.skillpath.me:443 {
+  tls A01634135@tec.mx
   root * /srv
   route {
-    reverse_proxy /api* api-server:5000
+    reverse_proxy /api* api-server:8000
     try_files {path} {path}/ /index.html
     file_server
   }

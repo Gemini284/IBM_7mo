@@ -41,7 +41,7 @@ ssh:
 # apt install make
 
 copy-files:
-	scp -r ./* $(SSH_STRING):/root/
+	scp -r ./* ./$(SSH_STRING):/root/
 
 # when you add firewall rule, have to add SSH on port 22 or it will stop working
 

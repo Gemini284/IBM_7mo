@@ -1,4 +1,16 @@
-# IBM_7mo
+# SkillPath
+- María Fernanda Elizalde Macías - A01634135
+- Sofía del Pilar Batiz Martínez - A01634125
+- José Abraham González Navarro  - A00369832
+- José Ángel Tobón Salazar - A01411655
+- Álvaro Misael Pintor Alcantar - A01631795
+
+# Deployment
+- Build con **Docker Compose**
+- SSL con **Caddy**
+- VM en **Digital Ocean**
+- DNS con **Cloudflare**
+- Dominio con **Namecheap**
 
 Para instalar los modulos, ejecutar el comando en el path de la carpeta server y web-app:
 ```
@@ -9,7 +21,7 @@ Para ejecutar:
 ```
 npm start
 ```
-## Web-app
+## Client
 Los archivos correspondientes fueron obtenidos de Material Dashboard 2 React:
 ```
 material-dashboard-react
@@ -51,9 +63,10 @@ Para generar token:
 ```
 openssl rand -base64 32
 ```
-Hosting:
-[skillpath-lovat.vercel.app](https://skillpath.onrender.com)
 
 Más información:
 
 https://stackoverflow.com/questions/11896304/openssl-is-not-recognized-as-an-internal-or-external-command
+
+----
+
