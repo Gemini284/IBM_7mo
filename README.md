@@ -5,6 +5,14 @@
 - José Ángel Tobón Salazar - A01411655
 - Álvaro Misael Pintor Alcantar - A01631795
 
+SkillPath es una aplicación que permite la fácil visualización y manejo de las certificaciones de los empleados de IBM.
+
+La apicación incluye lo siguiente:
+- **Dashboard**: Muestra gráficas e información relevantes
+- **Búsqueda**: Permite al usuario buscar certificaciones o empleados. Dependiendo de la búsqueda, se mostrará un resumen y una tabla con los resultados correspondientes.
+- **Registro de Certificación**: Incluye un formulario para que el usuario registre una nueva certificación.
+- **Sign In**: Al iniciar la aplicación, el usuario deberá ingresar con una cuenta válida.
+
 # Deployment
 - Build con **Docker Compose**
 - SSL con **Caddy**
@@ -12,6 +20,7 @@
 - DNS con **Cloudflare**
 - Dominio con **Namecheap**
 
+# Instalación
 Para instalar los modulos, ejecutar el comando en el path de la carpeta server y web-app:
 ```
 npm install
@@ -21,7 +30,10 @@ Para ejecutar:
 ```
 npm start
 ```
+# Información Relevante:
 ## Client
+- React App
+---
 Los archivos correspondientes fueron obtenidos de Material Dashboard 2 React:
 ```
 material-dashboard-react
@@ -43,8 +55,11 @@ Coded by www.creative-tim.com
 
  =========================================================
 ```
-
+---
 ## Server
+- MongoDB Atlas
+---
+### Setup de variables de ambiente:
 - Agregar en la carpeta de server un archivo **.env** con lo siguiente: (reemplazar lo que está entre <>)
 ```
 PORT = <port>
