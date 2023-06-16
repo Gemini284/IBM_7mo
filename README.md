@@ -51,6 +51,8 @@ Para generar token:
 ```
 openssl rand -base64 32
 ```
+Hosting:
+skillpath-lovat.vercel.app
 
 Más información:
 
