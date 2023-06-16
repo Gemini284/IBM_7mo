@@ -61,5 +61,5 @@
     "**/@material-ui/pickers**",
     "**/the-3rd-part-library**"
   ],
-  "proxy": "http://0.0.0.0:8000"
+  "proxy": "http://localhost:8000"
 }
