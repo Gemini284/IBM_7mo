@@ -32,7 +32,7 @@ stop:
 
 ### REMOTE
 
-SSH_STRING:=root@143.198.155.242
+SSH_STRING:=root@146.190.154.223
 
 ssh:
 	ssh $(SSH_STRING)
@@ -41,7 +41,7 @@ ssh:
 # apt install make
 
 copy-files:
-	scp -r ./* ./$(SSH_STRING):/root/
+	scp -r ./* $(SSH_STRING):/root/
 
 # when you add firewall rule, have to add SSH on port 22 or it will stop working
 
