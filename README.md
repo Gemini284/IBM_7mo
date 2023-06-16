@@ -52,7 +52,7 @@ Para generar token:
 openssl rand -base64 32
 ```
 Hosting:
-skillpath-lovat.vercel.app
+[skillpath-lovat.vercel.app](https://skillpath.onrender.com)
 
 Más información:
 
