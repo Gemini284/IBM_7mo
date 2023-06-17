@@ -29,8 +29,6 @@ make build-local
 make run-local
 ```
 
-Como resultado, el sitio estará disponible en el `localhost:80`
-
 # Información Relevante:
 ## Client
 - React App
