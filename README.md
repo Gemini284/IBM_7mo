@@ -17,19 +17,18 @@ La apicación incluye lo siguiente:
 - Build con **Docker Compose**
 - SSL con **Caddy**
 - VM en **Digital Ocean**
-- DNS con **Cloudflare**
 - Dominio con **Namecheap**
 
 # Instalación
-Para instalar los modulos, ejecutar el comando en el path de la carpeta server y web-app:
-```
-npm install
-```
-Para ejecutar:
+## Pre-requisitos
+- Tener Docker instalado
 
+Para la instalación por makefile, ejecutar los siguientes comandos en el directorio raíz del proyecto:
 ```
-npm start
+make build-dev
+make run-dev
 ```
+
 # Información Relevante:
 ## Client
 - React App
