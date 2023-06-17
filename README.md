@@ -59,16 +59,16 @@ Coded by www.creative-tim.com
 - MongoDB Atlas
 ---
 ### Setup de variables de ambiente:
-- Agregar en la carpeta de server un archivo **.env** con lo siguiente: (reemplazar lo que está entre <>)
+- Agregar en la carpeta de server un archivo **.env** con lo siguiente:
 ```
-PORT = <port>
+PORT = 8000
 URI = "mongodb+srv://trial-user:SPkGPqpvoKdmSfZi@atlascluster.71rs2yl.mongodb.net/"
-DATABASE = "<database-name>"
-TOKEN_SECRET=<token>
+DATABASE = "ibm-db"
+TOKEN_SECRET=JT8ywAm3GC3gNLzHxqEw8N1AMxqLNnHQKV6vVe95Zbc
 ```
 - No escoger port 27017
 
-### Recomendaciones del Token
+### Alternativa de Generación del Token
 - Encode with base64, mientras más largo mejor
 
 Para generar token:
