@@ -25,9 +25,11 @@ La apicación incluye lo siguiente:
 ## Instalación
 Para la instalación por makefile, ejecutar los siguientes comandos en el directorio raíz del proyecto:
 ```
-make build-dev
-make run-dev
+make build-local
+make run-local
 ```
+
+Como resultado, el sitio estará disponible en el `localhost:80`
 
 # Información Relevante:
 ## Client
