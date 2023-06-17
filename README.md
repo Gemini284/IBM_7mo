@@ -62,7 +62,7 @@ Coded by www.creative-tim.com
 - Agregar en la carpeta de server un archivo **.env** con lo siguiente: (reemplazar lo que está entre <>)
 ```
 PORT = <port>
-URI = "mongodb+srv://<user>:<password>@atlascluster.71rs2yl.mongodb.net/"
+URI = "mongodb+srv://trial-user:SPkGPqpvoKdmSfZi@atlascluster.71rs2yl.mongodb.net/"
 DATABASE = "<database-name>"
 TOKEN_SECRET=<token>
 ```
