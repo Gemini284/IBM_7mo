@@ -21,8 +21,8 @@ La apicación incluye lo siguiente:
 
 # Instalación
 ## Pre-requisitos
-- Tener Docker instalado
-
+- Tener Docker instalado en tu sistema
+## Instalación
 Para la instalación por makefile, ejecutar los siguientes comandos en el directorio raíz del proyecto:
 ```
 make build-dev
