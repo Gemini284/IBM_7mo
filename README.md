@@ -17,19 +17,18 @@ La apicación incluye lo siguiente:
 - Build con **Docker Compose**
 - SSL con **Caddy**
 - VM en **Digital Ocean**
-- DNS con **Cloudflare**
 - Dominio con **Namecheap**
 
 # Instalación
-Para instalar los modulos, ejecutar el comando en el path de la carpeta server y web-app:
+## Pre-requisitos
+- Tener Docker instalado en tu sistema
+## Instalación
+Para la instalación por makefile, ejecutar los siguientes comandos en el directorio raíz del proyecto:
 ```
-npm install
+make build-dev
+make run-dev
 ```
-Para ejecutar:
 
-```
-npm start
-```
 # Información Relevante:
 ## Client
 - React App
@@ -60,16 +59,16 @@ Coded by www.creative-tim.com
 - MongoDB Atlas
 ---
 ### Setup de variables de ambiente:
-- Agregar en la carpeta de server un archivo **.env** con lo siguiente: (reemplazar lo que está entre <>)
+- Agregar en la carpeta de server un archivo **.env** con lo siguiente:
 ```
-PORT = <port>
-URI = "mongodb+srv://<user>:<password>@atlascluster.71rs2yl.mongodb.net/"
-DATABASE = "<database-name>"
-TOKEN_SECRET=<token>
+PORT = 8000
+URI = "mongodb+srv://trial-user:SPkGPqpvoKdmSfZi@atlascluster.71rs2yl.mongodb.net/"
+DATABASE = "ibm-db"
+TOKEN_SECRET=JT8ywAm3GC3gNLzHxqEw8N1AMxqLNnHQKV6vVe95Zbc
 ```
 - No escoger port 27017
 
-### Recomendaciones del Token
+### Alternativa de Generación del Token
 - Encode with base64, mientras más largo mejor
 
 Para generar token:
